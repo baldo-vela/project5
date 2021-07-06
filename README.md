@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Greatest Hits 2.0, A Single Page Application built in React, Served by Ruby on Rails
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with as a demonstration of a full-stack web-application, with a Javascript Single Page Application (SPA) dynamically querying and rendering the content provided by a backend Application Programming Interface (API) built in Ruby v2.6.1 with the Rails v6.0.0 framework. 
 
-## Available Scripts
+The goal being a comprehensive display of proficiency with the React library to build a user-facing application. In addition to tying together previous knowledge of constructing a functional Rails powered backend.
 
-In the project directory, you can run:
+Greatest Hits 2.0 code base is seperated into two repositories, this one which is the client facing User Interface (UI). It's purpose is to provide a social expansion of existing Spotify playlists. By using React-Router, we hope to enable better SEO exposure and a modicum of 
+## Installation
 
-### `yarn start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-### `yarn test`
+## Asset Attribution
+Note: This was created using assets licensed under the Creative Commons Attribution 4.0 International license and requires compliance with the following: give appropriate credit, providing a link to the license, and used with little to no changes made. This application was created with no endorsement from the original creator, and the assets are contained in the dedicated `assets/game-icons` folder are are re-listed below with direct links:
+https://game-icons.net/1x1/delapouite/boss-key.html
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Licenses
+https://creativecommons.org/licenses/by/4.0/
