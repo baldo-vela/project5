@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Main() {
+function Welcome() {
     return (
         <div>
-            <h1>Main Page</h1>
+            <h1>Welcome</h1>
         </div>
     )
 }
 
-export default Main;
+export default Welcome;
