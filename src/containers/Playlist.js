@@ -17,6 +17,7 @@ class Playlist extends Component {
     render() {
         return(
             <div id="playlist">
+                <h1>A Playlist</h1>
             </div>
         )
     }

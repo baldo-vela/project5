@@ -7,6 +7,7 @@ class NavBar extends Component {
                 <ul>
                     <li>Main</li>
                     <li>My Playlists</li>
+                    <li>User Name</li>
 
                 </ul>
             </div>
