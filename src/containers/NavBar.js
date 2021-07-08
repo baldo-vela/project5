@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-class NavBar extends Component {
-    render () {
-        return(
-            <div className='navbar'>
-                <ul>
-                    <li>Main</li>
-                    <li>My Playlists</li>
-                    <li>User Name</li>
+function NavBar() {
+    return(
+        <div className='navbar'>
+            <ul>
+                <li>Main</li>
+                <li>My Playlists</li>
+                <li>User Name</li>
 
-                </ul>
-            </div>
+            </ul>
+        </div>
         )
-    }
 }
 
-export default NavBar
+
+export default NavBar;
