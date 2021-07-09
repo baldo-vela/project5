@@ -14,7 +14,7 @@ import Nav from './containers/Nav'
 
 function App() {
     return (
-        <div>
+        <div className="App">
             <Nav />
             <Main />
             
