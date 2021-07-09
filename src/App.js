@@ -1,6 +1,6 @@
 //React Dependancies
 import React from 'react'
-import 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 //Root Imports
 import './App.css';
@@ -14,11 +14,13 @@ import Nav from './containers/Nav'
 
 function App() {
     return (
-        <div className="App">
-            <Nav />
-            <Main />
-            
-        </div>
+        <Router>
+            <div className="App">
+                <Nav />
+                <Main />
+
+            </div>
+        </Router>
     )
 }
 
