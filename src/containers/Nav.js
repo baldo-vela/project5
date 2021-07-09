@@ -1,10 +1,10 @@
 import React from 'react';
 
-function NavBar() {
+function Nav() {
     return(
-        <div className='navbar'>
-            <ul>
-                <li>Main</li>
+        <div className='nav'>
+            <ul className='nav-links'>
+                <li>Logo</li>
                 <li>My Playlists</li>
                 <li>User Name</li>
 
@@ -14,4 +14,4 @@ function NavBar() {
 }
 
 
-export default NavBar;
+export default Nav;
