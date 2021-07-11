@@ -4,7 +4,7 @@ import '../stylesheets/Login.css';
 
 
 // Allows user to sign in with Spotify
-function SignIn() {
+export default function SignIn() {
     //TODO: Add Spotify sign in
     return (
         <div className="login">
@@ -15,4 +15,3 @@ function SignIn() {
     )
 
 }
-export default SignIn

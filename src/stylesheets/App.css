@@ -12,6 +12,31 @@
     --persian-plum: #6b0f1a; 
 }
 
+body {
+    background-color: white;
+    color: black;
+    margin: 1rem;
+    padding: 0;
+    
+     
+ }
+
+ body::-webkit-scrollbar {
+  width: 0.5rem;
+
+ }
+
+ body::-webkit-scrollbar-track {
+  background: var(--xanadu);
+
+ }
+
+ body::-webkit-scrollbar-thumb {
+   background: var(--davys-grey);
+
+
+ }
+
 nav {
     align-items: left;
     background-color: white;

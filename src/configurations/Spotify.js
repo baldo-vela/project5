@@ -1,6 +1,7 @@
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const redirectUri = "http://localhost:3000/callback";
-const clientId = "SPOTIFY_APP_CLIENT_ID_KEY";
+
+const clientId = process.env.SPOTIFY_APP_CLIENT_ID_KEY;
 
 const scopes = [  
     "playlist-read-collaborative",
