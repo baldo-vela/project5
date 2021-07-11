@@ -1,5 +1,6 @@
 import React from 'react'
-import SplashLogo from './assets/images/animated_splash.gif'
+import SplashLogo from '../assets/images/animated_splash.gif';
+import '../stylesheets/Login.css';
 
 
 // Allows user to sign in with Spotify
