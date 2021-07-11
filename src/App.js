@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 //Root Imports
 import './App.css';
 import './index.css'
+import Login from './Login.js'
 
 
 //Container Imports
@@ -15,13 +16,14 @@ import Nav from './containers/Nav'
 
 function App() {
     return (
-        <Router>
-            <div className="App">
-                <Nav />
-                <Main />
+        <Login />
+        // <Router>
+        //     <div className="App">
+        //         <Nav />
+        //         <Main />
 
-            </div>
-        </Router>
+        //     </div>
+        // </Router>
     )
 }
 

@@ -7,6 +7,7 @@ function Nav() {
                 <li>Logo</li>
                 <li>My Playlists</li>
                 <li>User Name</li>
+                <li>Logout</li>
 
             </ul>
         </div>
