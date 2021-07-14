@@ -1,5 +1,5 @@
 /* Objects and properties are in Alphabetical Order */
-.App{
+html{
     font-size: 16px;
     font-family: 'Share Tech Mono', monospace;
     /* font-family: 'Open Sans', sans-serif; */
@@ -13,7 +13,7 @@
 }
 
 body {
-    background-color: white;
+    /* background-color: white; */
     color: black;
     margin: 1rem;
     padding: 0;

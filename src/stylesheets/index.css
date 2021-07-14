@@ -1,0 +1,12 @@
+html{
+background-color: var(--russian-violet);
+font-size: 16px;
+font-family: 'Share Tech Mono', monospace;
+font-family: 'Open Sans', sans-serif;
+text-align: center;
+--davys-grey: #595959;
+--xanadu: #808F85;
+--russian-violet:  #27163f;
+--dark-purple: #31081F;
+--persian-plum: #6b0f1a; 
+}
