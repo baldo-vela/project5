@@ -2,4 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './stylesheets/index.css';
-ReactDOM.render(<App />, document.getElementById('root'));
+//Redux
+import store from './redux/store'
+import { Provider } from 'react-redux';
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+    );

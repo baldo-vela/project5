@@ -14,18 +14,17 @@ import Login from './actions/Login.js'
 import Main from './containers/Main'
 import Nav from './containers/Nav'
 
-//
+
 
 function App() {
     return (
+        <div className="App">
         <Login />
-        // <Router>
-        //     <div className="App">
-        //         <Nav />
-        //         <Main />
-
-        //     </div>
-        // </Router>
+            <Router>
+                    <Nav />
+                    <Main />
+            </Router>
+        </div>
     )
 }
 
