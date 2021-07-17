@@ -24,7 +24,6 @@ const userSlices = createSlice({
         href: '',
         country: '',
         spotify_url: '',
-        spotify_id: '',
         spotify_access_token: '',
         spotify_refresh_token: '',
         uri: '',
@@ -39,6 +38,38 @@ const userSlices = createSlice({
         setSpotifyId: (state, action) => {
             state.spotify_id = action.payload
         },
+        setEmail: (state, action) => {
+            state.email = action.payload
+        },
+        setHref: (state, action) => {
+            state.href = action.payload
+        },
+        setCountry: (state, action) => {
+            state.country = action.payload
+        },
+        setSpotifyUrl: (state, action) => {
+            state.spotify_url = action.payload
+        },
+        setSpotifyAccessToken: (state, action) => {
+            state.spotify_access_token = action.payload
+        },
+        setSpotifyRefreshToken: (state, action) => {
+            state.spotify_refresh_token = action.payload
+        },
+        setUri: (state, action) => {
+            state.uri = action.payload
+        },
+        setImageUrl: (state, action) => {
+            state.image_url = action.payload
+        },
+        setCreatedAt: (state, action) => {
+            state.created_at = action.payload
+        }, 
+        setUpdatedAt: (state, action) => {
+            state.updated_at = action.payload
+        }
 
     }
 });
+
+export default userSlice.reducer
