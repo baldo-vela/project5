@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { loginUrl } from '../../configurations/Spotify';
 /*  User id: 1, 
     name: "moleculetycoon", 
     email: nil, 
@@ -13,9 +14,47 @@ import { createSlice } from "@reduxjs/toolkit";
     created_at: "2021-07-16 01:45:30.488108000 +0000", 
     updated_at: "2021-07-16 02:15:29.123883000 +0000">] */
 
+export const loginUser = createAsyncThunk(
+  "user/login",
+  async () => {
+      console.log('Fetching User Login from:', loginUrl)
+      const data = await fetch(loginUrl);
+      const json = await data.json();
+      return json;
+  }
+);
+
+const sliceOptions = {
+    name: "currentUser",
+    initialState: {
+        playlists: [],
+        isLoggedIn: false,
+        isLoading: false,
+        hasError: false,
+    },
+    reducers: {},
+    extraReducers: {
+        [loginUser.pending]: (state, action) => {
+            state.isLoggedIn = false;
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [loginUser.fulfilled]: (state, action) => {
+            state.isLoggedIn = true;
+            state.isLoading = false;
+            state.hasError = false;
+        },
+        [loginUser.rejected]: (state, action) => {
+            state.isLoggedIn = false;
+            state.isLoading = false;
+            state.hasError = true;
+        }
+    }
+}
+
 const initialState = {}
 
-const userSlices = createSlice({
+const userSlice = createSlice({
     name: "user",
     initialState: {
         user_id: '',
@@ -30,6 +69,8 @@ const userSlices = createSlice({
         image_url: '',
         created_at: '',
         updated_at: '',
+        isLoading: false,
+        hasError: false
         },
     reducers: {
         setUserId: (state, action) => {
