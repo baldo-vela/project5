@@ -1,5 +1,5 @@
 //Backend Urls
-const rootEndPointUrl = 'http://localhost:8000/api/v1';
+const rootEndPointUrl = 'http://localhost:3001/api/v1';
 const usersApi = `${rootEndPointUrl}/users`;
 const loginUrl = `${rootEndPointUrl}/login`;
 const playlistsApi = `${rootEndPointUrl}/playlists`;
