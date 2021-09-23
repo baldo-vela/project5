@@ -12,18 +12,15 @@ import Login from './actions/Login.js'
 
 //Container Imports
 import Main from './containers/Main'
-import Nav from './containers/Nav'
+// TODO: move this to Main component import Nav from './containers/Nav'
 
-
+//Pulls the Auth Code from the spotify redirect URL in browser
+const code = new URLSearchParams(window.location.search).get('code')
 
 function App() {
     return (
         <div className="App">
-        <Login />
-            <Router>
-                    <Nav />
-                    <Main />
-            </Router>
+            {code ? <Main code={code}/> : <Login/>}
         </div>
     )
 }
