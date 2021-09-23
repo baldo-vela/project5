@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginUrl } from '../../configurations/Spotify';
 /*  User id: 1, 
-    name: "moleculetycoon", 
+    name: "foo", 
     email: nil, 
-    href: "https://api.spotify.com/v1/users/moleculetycoon", 
+    href: "https://api.spotify.com/v1/users/foo", 
     country: "US", 
-    spotify_url: "https://open.spotify.com/user/moleculetycoon", 
-    spotify_id: "moleculetycoon", 
+    spotify_url: "https://open.spotify.com/user/foo", 
+    spotify_id: "foo", 
     spotify_access_token: [FILTERED], 
     spotify_refresh_token: [FILTERED], 
-    uri: "spotify:user:moleculetycoon", 
+    uri: "spotify:user:foo", 
     image_url: "https://i.scdn.co/image/ab6775700000ee855740709a5b...", 
     created_at: "2021-07-16 01:45:30.488108000 +0000", 
     updated_at: "2021-07-16 02:15:29.123883000 +0000">] */
@@ -25,7 +25,7 @@ export const loginUser = createAsyncThunk(
 );
 
 const sliceOptions = {
-    name: "currentUser",
+    name: "currentUserReducer",
     initialState: {
         playlists: [],
         isLoggedIn: false,
@@ -53,7 +53,7 @@ const sliceOptions = {
 }
 
 const initialState = {}
-
+//TODO: Refactor this to be included in a single Root Reducer call
 const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -73,6 +73,20 @@ const userSlice = createSlice({
         hasError: false
         },
     reducers: {
+        setCurrentUser: (state, action) => {
+            state.user_id = action.payload.user_id;
+            state.spotify_id = action.payload.spotify_id;
+            state.email = action.payload.email;
+            state.href = action.payload.href;
+            state.country = action.payload.country;
+            state.spotify_url = action.payload.spotify_url;
+            state.spotify_access_token = action.payload.spotify_access_token;
+            state.spotify_refresh_token = action.payload.spotify_refresh_token;
+            state.uri = action.payload.uri;
+            state.image_url = action.payload.image_url;
+            state.created_at = action.payload.created_at;
+            state.updated_at = action.payload.updated_at;
+        },
         setUserId: (state, action) => {
             state.user_id = action.payload
         },
