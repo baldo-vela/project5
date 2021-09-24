@@ -14,6 +14,25 @@ import { loginUrl } from '../../configurations/Spotify';
     created_at: "2021-07-16 01:45:30.488108000 +0000", 
     updated_at: "2021-07-16 02:15:29.123883000 +0000">] */
 
+/*
+    async function fetchUser() {
+        console.log("Fetching User");
+        const response = await fetch(usersAPI);
+        const data = await response.json();
+        console.log("User Data: ", data);
+        return data;
+    }
+    export const loadUser() = createAsyncThunk(
+        "currentUser/loadUser",
+        async (thunkAPI) => {
+            console.log("Loading User");
+            const data = await fetchUser();
+            const json = await data.json();
+            return json;
+        }
+    );
+*/
+
 export const loginUser = createAsyncThunk(
   "user/login",
   async () => {
@@ -25,7 +44,7 @@ export const loginUser = createAsyncThunk(
 );
 
 const sliceOptions = {
-    name: "currentUserReducer",
+    name: "currentUser",
     initialState: {
         playlists: [],
         isLoggedIn: false,
