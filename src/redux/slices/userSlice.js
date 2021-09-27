@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // TODO rewrite this to reference our Rails API backend
 import { usersAPI } from '../../configurations/Spotify';
-/*  User id: 1, 
+/*  Sample User Data:
+    User id: 1, 
     name: "foo", 
     email: nil, 
     href: "https://api.spotify.com/v1/users/foo", 
@@ -15,7 +16,7 @@ import { usersAPI } from '../../configurations/Spotify';
     created_at: "2021-07-16 01:45:30.488108000 +0000", 
     updated_at: "2021-07-16 02:15:29.123883000 +0000">] */
 
-/*
+/*  If this was pure javascript, we would have to use the following:
     async function fetchUser() {
         console.log("Fetching User");
         const response = await fetch(usersAPI);
@@ -52,7 +53,11 @@ const sliceOptions = {
         isLoading: false,
         hasError: false,
     },
-    reducers: {},
+    reducers: {
+        setCurrentUser: (state, action) => {
+            state.currentUser = action.payload;
+        }
+    },
     extraReducers: {
         [loginUser.pending]: (state, action) => {
             state.isLoggedIn = false;
