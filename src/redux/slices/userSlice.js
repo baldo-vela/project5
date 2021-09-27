@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUrl } from '../../configurations/Spotify';
+// TODO rewrite this to reference our Rails API backend
+import { usersAPI } from '../../configurations/Spotify';
 /*  User id: 1, 
     name: "foo", 
     email: nil, 
@@ -32,12 +33,12 @@ import { loginUrl } from '../../configurations/Spotify';
         }
     );
 */
-
+//Gets the current user from our backend API
 export const loginUser = createAsyncThunk(
   "user/login",
   async () => {
-      console.log('Fetching User Login from:', loginUrl)
-      const data = await fetch(loginUrl);
+      console.log('Fetching User Login from: ', usersAPI)
+      const data = await fetch(usersAPI);
       const json = await data.json();
       return json;
   }
