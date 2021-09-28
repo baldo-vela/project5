@@ -13,6 +13,7 @@ import '../stylesheets/Login.css';
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const apiURL = 'http://localhost:3001/api/v1/login'
 
     const apiResponseHandler = (resp) => {
         console.log(resp);
@@ -22,10 +23,10 @@ export const Login = () => {
     return (
         <div className="login">
             <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
-            <a href='#'
-            onClick={() => dispatch(
-                { type: 'loginClicked' }
-                )}
+            <a href={apiURL}
+            // onClick={() => dispatch(
+            //     { type: 'loginClicked' }
+            //     )}
             >
                 Login with Spotify
             </a>
