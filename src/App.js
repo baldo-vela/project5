@@ -15,18 +15,29 @@ import Login from './actions/Login.js'
 import Main from './containers/Main'
 // TODO: move this to Main component import Nav from './containers/Nav'
 
-//Pulls the Auth Code from the spotify redirect URL in browser
-const code = new URLSearchParams(window.location.search).get('code')
 
+class App extends React.Component {
+    componentDidMount = () => {
+        //Pulls the Auth Code from the spotify redirect URL in browser
+        const code = new URLSearchParams(window.location.search).get('code')
+        const token = window.localStorage.getItem('spotifyAuthToken')
+        console.log('Auth code from url: ',code);
+        console.log('Current Auth Token: ', token);
+        // if (code !== null && code !== undefined && code !== '') {
+        //     this.setState({code: code});
+        // }
+    }
 
-function App() {
     //const dispatch = useDispatch();
     //const { isLoggedIn } = useSelector(state => state.isLoggedIn);
-    return (
-        <div className="App">
-            {code ? <Main code={code}/> : <Login/>}
-        </div>
-    )
+    render() {
+        return (
+            <div className="App">
+                {this.componentDidMount()}
+                <Login/>
+            </div>
+        )
+    }
 }
 
 
