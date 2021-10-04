@@ -9,44 +9,47 @@ import {
 
 //External Libraries
 import { SpotifyAuth } from 'react-spotify-auth';
+//Configuration File for Spotify
+import { apiURL, clientURL, clientID, redirectUri, scopes } from '../configurations/Spotify';
 
 //Stylesheet for this component
 import SplashLogo from '../assets/images/animated_splash.gif';
 import '../stylesheets/Login.css';
 
-export const Login = () => {
-    const dispatch = useDispatch();
-    const apiURL = 'http://localhost:3001/api/v1/login'
+export class Login extends React.Component {
+    // dispatch = useDispatch();
+    
 
-    const apiResponseHandler = (resp) => {
+    apiResponseHandler = (resp) => {
         console.log(resp);
         //this.props.dispatch(setCurrentUser(resp));
     }
-    const onClickHandler = () => {
+    onClickHandler = () => {
         console.log('clicked');
         
     }
-    const authHandler = async (resp) => {
+    authHandler = async (resp) => {
         await console.log(resp);
     }
-    
-    return (
-        <div className="login">
-            <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
-            {/* <a href={apiURL}
-                 onClick={() => onClickHandler()}
-            >
-                Login with Spotify
-            </a> */}
-            <SpotifyAuth
-                redirectUri={apiURL}
-                clientID={clientID}
-                scopes={scopes}
-                onAccessToken={this.authHandler}
-            />
-            
-        </div>
-    );
+    render() {
+        return (
+            <div className="login">
+                <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
+                <a href={apiURL}
+                    onClick={() => this.onClickHandler()}
+                >
+                    Login with Spotify
+                </a>
+                {/* <SpotifyAuth
+                    redirectUri={clientURL}
+                    clientID={clientID}
+                    scopes={scopes}
+                    onAccessToken={this.authHandler}
+                /> */}
+                
+            </div>
+        );
+    }
 };
 
 export default connect()(Login);
