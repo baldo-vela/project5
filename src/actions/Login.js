@@ -23,16 +23,20 @@ export class Login extends React.Component {
     async apiResponseHandler() {
         try{
             let resp = await fetch('http://localhost:3001/api/v1/login', 
-                {   body: null,
+                {   
+                    body: null,
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
                     method: 'POST',
                     mode: 'cors',
-                    
+                    redirect: 'follow'
                 }
             ); 
+            if(!resp.ok) {
+                throw new Error(resp.statusText);
+            }
             console.log(resp);
         } catch (error) {
             console.log(error);
