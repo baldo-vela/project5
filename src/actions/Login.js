@@ -21,20 +21,29 @@ export class Login extends React.Component {
     
 
     async apiResponseHandler() {
-        let resp = await fetch(
-            apiURL, 
-            {
-                method: 'POST',
-            }
-        );
-        console.log(resp);
+        try{
+            let resp = await fetch('http://localhost:3001/api/v1/login', 
+                {   body: null,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    method: 'POST',
+                    mode: 'cors',
+                    
+                }
+            ); 
+            console.log(resp);
+        } catch (error) {
+            console.log(error);
+        }
         //this.props.dispatch(setCurrentUser(resp));
     }
     onClickHandler = () => {
         console.log('clicked');
         this.apiResponseHandler();        
     }
-    
+
     render() {
         return (
             <div className="login">
