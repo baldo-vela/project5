@@ -20,22 +20,26 @@ export class Login extends React.Component {
     // dispatch = useDispatch();
     
 
-    apiResponseHandler = (resp) => {
+    async apiResponseHandler() {
+        let resp = await fetch(
+            apiURL, 
+            {
+                method: 'POST',
+            }
+        );
         console.log(resp);
         //this.props.dispatch(setCurrentUser(resp));
     }
     onClickHandler = () => {
         console.log('clicked');
-        
+        this.apiResponseHandler();        
     }
-    authHandler = async (resp) => {
-        await console.log(resp);
-    }
+    
     render() {
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
-                <a href={apiURL}
+                <a href='#'
                     onClick={() => this.onClickHandler()}
                 >
                     Login with Spotify
