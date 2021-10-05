@@ -48,22 +48,25 @@ export class Login extends React.Component {
         this.apiResponseHandler();        
     }
 
+    authHandler = (token) => {
+        console.log('authHandler recieving access token ', token);
+    }
+
     render() {
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
-                <a href='#'
+                {/* <a href='#'
                     onClick={() => this.onClickHandler()}
                 >
                     Login with Spotify
-                </a>
-                {/* <SpotifyAuth
+                </a> */}
+                <SpotifyAuth
                     redirectUri={clientURL}
                     clientID={clientID}
                     scopes={scopes}
                     onAccessToken={this.authHandler}
-                /> */}
-                
+                />
             </div>
         );
     }
