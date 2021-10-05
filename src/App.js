@@ -19,10 +19,10 @@ import Main from './containers/Main'
 class App extends React.Component {
     componentDidMount = () => {
         //Pulls the Auth Code from the spotify redirect URL in browser
-        const code = new URLSearchParams(window.location.search).get('code')
-        const token = window.localStorage.getItem('spotifyAuthToken')
-        console.log('Auth code from url: ', code);
-        console.log('Current Auth Token: ', token);
+        //const code = new URLSearchParams(window.location.search).get('code')
+        //const token = window.localStorage.getItem('spotifyAuthToken')
+        //console.log('Auth code from url: ', code);
+        //console.log('Current Auth Token: ', token);
         // if (code !== null && code !== undefined && code !== '') {
         //     this.setState({code: code});
         // }
