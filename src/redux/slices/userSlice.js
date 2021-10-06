@@ -26,12 +26,10 @@ import { usersAPI } from '../../configurations/Spotify';
 export const loginUser = createAsyncThunk(
   "user/login",
   async () => {
-      console.log('Fetching User Login from: ', usersAPI)
+      console.trace('Fetching User from GH API: ', usersAPI)
       const data = await fetch(usersAPI);
-      /*
-        method: "GET"
-      */
       const json = await data.json();
+      console.table(json);
       return json;
   }
 );
