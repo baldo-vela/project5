@@ -18,7 +18,6 @@ import '../stylesheets/Login.css';
 
 export class Login extends React.Component {
     // dispatch = useDispatch();
-    
 
     // async apiResponseHandler() {
     //     try{
@@ -43,14 +42,11 @@ export class Login extends React.Component {
     //     }
     //     //this.props.dispatch(setCurrentUser(resp));
     // }
-    // onClickHandler = () => {
-    //     console.log('clicked');
-    //     this.apiResponseHandler();        
-    // }
 
     authHandler = (token) => {
         //Note .trace ouputs to the console with where the function is called
         console.trace('authHandler recieving access token ', token);
+        console.log('Fetching User')
     }
 
     render() {
