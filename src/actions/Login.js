@@ -49,7 +49,8 @@ export class Login extends React.Component {
     // }
 
     authHandler = (token) => {
-        console.log('authHandler recieving access token ', token);
+        //Note .trace ouputs to the console with where the function is called
+        console.trace('authHandler recieving access token ', token);
     }
 
     render() {
