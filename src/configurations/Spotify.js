@@ -22,5 +22,7 @@ export const scopes = [
     ];
 //Public Spotify Client ID
 export const clientID = "6ed60468af744e8699f512dc88fcd567";
+//Sppotiy API URL
+export const spotifyUserURL = "https://api.spotify.com/v1/me"
 //Our Backend User URL, will accept the user object
 export const usersAPI = `http://localhost:3000/api/v1/users`;
