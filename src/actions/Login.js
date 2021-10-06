@@ -20,33 +20,33 @@ export class Login extends React.Component {
     // dispatch = useDispatch();
     
 
-    async apiResponseHandler() {
-        try{
-            let resp = await fetch('http://localhost:3001/api/v1/login', 
-                {   
-                    body: null,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    method: 'POST',
-                    mode: 'cors',
-                    redirect: 'follow'
-                }
-            ); 
-            if(!resp.ok) {
-                throw new Error(resp.statusText);
-            }
-            console.log(resp);
-        } catch (error) {
-            console.log(error);
-        }
-        //this.props.dispatch(setCurrentUser(resp));
-    }
-    onClickHandler = () => {
-        console.log('clicked');
-        this.apiResponseHandler();        
-    }
+    // async apiResponseHandler() {
+    //     try{
+    //         let resp = await fetch('http://localhost:3001/api/v1/login', 
+    //             {   
+    //                 body: null,
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Accept': 'application/json'
+    //                 },
+    //                 method: 'POST',
+    //                 mode: 'cors',
+    //                 redirect: 'follow'
+    //             }
+    //         ); 
+    //         if(!resp.ok) {
+    //             throw new Error(resp.statusText);
+    //         }
+    //         console.log(resp);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //     //this.props.dispatch(setCurrentUser(resp));
+    // }
+    // onClickHandler = () => {
+    //     console.log('clicked');
+    //     this.apiResponseHandler();        
+    // }
 
     authHandler = (token) => {
         console.log('authHandler recieving access token ', token);
