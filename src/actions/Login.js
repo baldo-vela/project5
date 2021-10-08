@@ -57,6 +57,7 @@ export class Login extends React.Component {
     }
     async fetchPlaylists(token) {
         // Fetches user's playlists from the Spotify API
+        // TODO push user's playlists from Spotify to app Store
         try {
             let resp = await fetch(spotifyUserURL + "/playlists", 
                 {
@@ -84,7 +85,7 @@ export class Login extends React.Component {
         console.log('authHandler recieving access token ', token);
         //TODO Fix Setting the token in the state
         this.setState({ token: token });
-        
+
         this.fetchUser(token);
         this.fetchPlaylists(token);
         
