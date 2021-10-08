@@ -24,14 +24,16 @@ export class Login extends React.Component {
             error: null,
             loading: false,
             user: [],
+            playlists: [],
         };
     }
     async fetchUser(token) {
-        // TODO - Fetch user from the Spotify API, push user from Spotify to our backend
+        // Fetches user from the Spotify API
+        // TODO push user from Spotify to our backend
         // TODO - Set the current user in the Redux store
         
         try {
-            console.log("Fetching user...", token);
+            //console.log("Fetching user...", token);
             let resp = await fetch(spotifyUserURL, 
                 {
                     body: null,
@@ -48,17 +50,43 @@ export class Login extends React.Component {
             }
             let data = await resp.json();
             console.log("User Fetched");
-            console.table(data);
+            console.log(data);
         } catch (error) {
             console.trace(error);
         }
     }
+    async fetchPlaylists(token) {
+        // Fetches user's playlists from the Spotify API
+        try {
+            let resp = await fetch(spotifyUserURL + "/playlists", 
+                {
+                    body: null,
+                    headers: {
+                        'Authorization': "Bearer " + token,
+                        'Content-Type': 'application/json'
+                    },
+                }
+            );
+            if(!resp.ok) {
+                throw new Error(resp.statusText);
+            }
+            let data = await resp.json();
+            console.log("Playlists Fetched");
+            console.log(data);
+
+        } catch (error) {
+            console.trace(error);
+        }
+    }
+
     tokenHandler = (token) => {
         //Note .trace ouputs to the console with where the function is called
         console.log('authHandler recieving access token ', token);
         //TODO Fix Setting the token in the state
         this.setState({ token: token });
+        
         this.fetchUser(token);
+        this.fetchPlaylists(token);
         
     }
 
