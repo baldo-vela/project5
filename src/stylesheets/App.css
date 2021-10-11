@@ -54,3 +54,21 @@ nav {
     list-style: none;
     width: 35%;
 }
+
+.playlist{
+    margin: 2rem;
+    padding: 1rem;
+}
+.pagination{
+    margin: 1rem auto;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 60% auto;
+}
+.active{
+    border: 1px solid black;
+    border-radius: 100%;
+    padding: 0 3px;
+    outline: none;
+}
