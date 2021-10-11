@@ -4,6 +4,7 @@
 import React from 'react'
 import faker from 'faker'
 import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 // Dummy Data
 const data = new Array(100).fill().map((value, id) => ({
@@ -16,7 +17,7 @@ const Main = ({}) => {
     
     const Row = ({ index, key, style }) => (
         <div>
-            <div key={key} style={style} className="post">
+            <div key={key} style={style} className="playlist">
                 <h3>{`${data[index].title}-${data[index].id}`}</h3>
                 <p>{data[index].body}</p>
             </div>
@@ -24,16 +25,23 @@ const Main = ({}) => {
        )
 
     return (
-        <div>
-            <h1>Main Page</h1>
-            <List
-                width={1400}
-                height={700}
-                itemCount={data.length}
-                itemSize={120}
+        <div
+            className='main'
             >
-                {Row}
-            </List>
+            <h1>Main Page</h1>
+            <AutoSizer>
+                {({ height, width }) => (
+                        <List
+                            height={height}
+                            itemCount={20}
+                            itemSize={120}
+                            width={width}
+                        >
+                            {Row}
+                        </List>
+                )
+                }
+            </AutoSizer>
         </div>
     );
 }
