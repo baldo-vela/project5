@@ -15,9 +15,11 @@ class Playlist extends Component {
     }
 
     render() {
+        const { title, description} = this.props.playlist;
         return(
             <div id="playlist">
-                <h1>A Playlist</h1>
+                <h1>{title}</h1>
+                <p>{description}</p>
             </div>
         )
     }
