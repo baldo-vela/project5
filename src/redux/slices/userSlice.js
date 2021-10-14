@@ -20,6 +20,30 @@ import { spotifyUserURL } from '../../configurations/Spotify';
 */
 
 //Gets the current user from the Spotify API
+/* async const fetchUser {
+    try {
+        //console.log("Fetching user...", token);
+        let resp = await fetch(spotifyUserURL, 
+            {
+                body: null,
+                headers: {
+                    'Authorization': "Bearer " + token,
+                    'Content-Type': 'application/json'
+                },
+                // method: 'GET',
+                // mode: 'cors',
+            }
+        );
+        if(!resp.ok) {
+            throw new Error(resp.statusText);
+        }
+        let data = await resp.json();
+        console.log("User Fetched");
+        console.log(data);
+    } catch (error) {
+        console.trace(error);
+    }
+}; */
 export const loginUser = createAsyncThunk(
   "user/loginStatus",
   async (authToken, thunkAPI) => {
@@ -70,5 +94,5 @@ const sliceOptions = {
 }
 export const userSlice = createSlice(sliceOptions);
 
-export const {setAuthToken, setCurrentUser } = userSlice.actions;
+export const { setAuthToken, setCurrentUser } = userSlice.actions;
 export default userSlice.reducer

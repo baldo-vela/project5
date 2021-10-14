@@ -2,9 +2,11 @@
 
 //React Libraries
 import React from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import {
-    loginUser
+    currentUser,
+    loginUser, 
+    setAuthToken
 } from "../redux/slices/userSlice"
 
 //External Libraries
@@ -16,18 +18,21 @@ import { apiURL, clientURL, clientID, redirectUri, scopes, spotifyUserURL } from
 import SplashLogo from '../assets/images/animated_splash.gif';
 import '../stylesheets/Login.css';
 
-export class Login extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            token: null,
-            error: null,
-            loading: false,
-            user: [],
-            playlists: [],
-        };
-    }
-    async fetchUser(token) {
+export const Login = () => {
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         token: null,
+    //         error: null,
+    //         loading: false,
+    //         user: [],
+    //         playlists: [],
+    //     };
+    // }
+    const dispatch = useDispatch();
+    //const { hasError } = useSelector((state) => state.currentUser);
+
+    /* async fetchUser(token) {
         // Fetches user from the Spotify API
         // TODO push user from Spotify to our backend
         // TODO - Set the current user in the Redux store
@@ -54,44 +59,44 @@ export class Login extends React.Component {
         } catch (error) {
             console.trace(error);
         }
-    }
-    async fetchPlaylists(token) {
-        // Fetches user's playlists from the Spotify API
-        // TODO push user's playlists from Spotify to app Store
-        try {
-            let resp = await fetch(spotifyUserURL + "/playlists", 
-                {
-                    body: null,
-                    headers: {
-                        'Authorization': "Bearer " + token,
-                        'Content-Type': 'application/json'
-                    },
-                }
-            );
-            if(!resp.ok) {
-                throw new Error(resp.statusText);
-            }
-            let data = await resp.json();
-            console.log("Playlists Fetched");
-            console.log(data);
+    } */
+    // async fetchPlaylists(token) {
+    //     // Fetches user's playlists from the Spotify API
+    //     // TODO push user's playlists from Spotify to app Store
+    //     try {
+    //         let resp = await fetch(spotifyUserURL + "/playlists", 
+    //             {
+    //                 body: null,
+    //                 headers: {
+    //                     'Authorization': "Bearer " + token,
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //             }
+    //         );
+    //         if(!resp.ok) {
+    //             throw new Error(resp.statusText);
+    //         }
+    //         let data = await resp.json();
+    //         console.log("Playlists Fetched");
+    //         console.log(data);
 
-        } catch (error) {
-            console.trace(error);
-        }
-    }
+    //     } catch (error) {
+    //         console.trace(error);
+    //     }
+    // }
 
-    tokenHandler = (token) => {
+    const tokenHandler = (token) => {
         //Note .trace ouputs to the console with where the function is called
         console.log('authHandler recieving access token ', token);
         //TODO Fix Setting the token in the state
-        this.setState({ token: token });
+        dispatch(setAuthToken(token))
 
-        this.fetchUser(token);
-        this.fetchPlaylists(token);
+        //this.fetchUser(token);
+        //this.fetchPlaylists(token);
         
     }
 
-    render() {
+
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
@@ -104,12 +109,12 @@ export class Login extends React.Component {
                     redirectUri={clientURL}
                     clientID={clientID}
                     scopes={scopes}
-                    onAccessToken={this.tokenHandler}
+                    onAccessToken={tokenHandler}
                     noCookie={true}
                 />
             </div>
         );
-    }
-};
+    
+}
 
 export default connect()(Login);
