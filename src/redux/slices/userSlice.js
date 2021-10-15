@@ -63,6 +63,7 @@ const sliceOptions = {
         isLoggedIn: false,
         isLoading: false,
         hasError: false,
+        error: null,
     },
     reducers: {
         setAuthToken(state, action) {
