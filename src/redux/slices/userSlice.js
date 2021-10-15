@@ -44,6 +44,10 @@ import { spotifyUserURL } from '../../configurations/Spotify';
         console.trace(error);
     }
 }; */
+// #createAsyncThunk requires 3 parameters:
+    // a string action type representing the lifecycle of the async request
+    // a payload creator callback function that returns a promise containing the result of some async logic, possibly with a value synchronously.
+
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (authToken, thunkAPI) => {
