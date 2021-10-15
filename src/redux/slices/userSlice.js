@@ -44,8 +44,8 @@ import { spotifyUserURL } from '../../configurations/Spotify';
         console.trace(error);
     }
 }; */
-export const loginUser = createAsyncThunk(
-  "user/loginStatus",
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
   async (authToken, thunkAPI) => {
       console.trace('Fetching User from Spotify API: ', spotifyUserURL)
       const data = await fetch(spotifyUserURL);
@@ -59,7 +59,6 @@ const sliceOptions = {
     name: "currentUser",
     initialState: {
         authToken: null,
-        playlists: [],
         user: {},
         isLoggedIn: false,
         isLoading: false,
@@ -74,18 +73,18 @@ const sliceOptions = {
         }
     },
     extraReducers: {
-        [loginUser.pending]: (state, action) => {
+        [fetchUser.pending]: (state, action) => {
             state.isLoggedIn = false;
             state.isLoading = true;
             state.hasError = false;
         },
-        [loginUser.fulfilled]: (state, action) => {
+        [fetchUser.fulfilled]: (state, action) => {
             state.user = action.payload;
             state.isLoggedIn = true;
             state.isLoading = false;
             state.hasError = false;
         },
-        [loginUser.rejected]: (state, action) => {
+        [fetchUser.rejected]: (state, action) => {
             state.isLoggedIn = false;
             state.isLoading = false;
             state.hasError = true;
