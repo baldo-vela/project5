@@ -46,18 +46,29 @@ import { spotifyUserURL } from '../../configurations/Spotify';
 }; */
 // #createAsyncThunk requires 3 parameters:
     // a string action type representing the lifecycle of the async request
-    // a payload creator callback function that returns a promise containing the result of some async logic, possibly with a value synchronously.
+    // a payload creator callback function that returns a promise containing the result of some async logic, possibly with a value synchronously. It is a function that contains all the logic needed to compute an appropirate result. This can include an AJAX data fetch, multiple AJAX calls, interactions with React Native storage, etc.
+    // The payload creator will be called with two arguments:
+        // 'arg' containing the first parameter that was passed to the thunk action creator when it was dispatched. This is useful for passing in values like item IDs that may be needed as part of the request. If you need to pass in multiple values, pass them together in an object when you dispatch the thunk, like dispatch(fetchUsers({status: 'active', sortBy: 'name'})).
+        // 'thunkAPI:' an object containing all of the parameters that are normally passed to a Redux thunk function, as well as additional options:
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (authToken, thunkAPI) => {
       console.trace('Fetching User from Spotify API: ', spotifyUserURL)
-      const data = await fetch(spotifyUserURL);
+      const data = await fetch(spotifyUserURL,
+        {
+            body: null,
+            headers: {
+                'Authorization': "Bearer " + authToken,
+                'Content-Type': 'application/json'
+            },
+        });
       const json = await data.json();
-      console.table(json);
+      console.log(json);
       return json;
   }
 );
+//Addtional Note: Yes RTK Query library can eliminate the need for writing data fetching thunks, but that's obfuscating things even more.
 
 const sliceOptions = {
     name: "currentUser",

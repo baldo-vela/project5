@@ -5,6 +5,7 @@ import React from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import {
     currentUser,
+    fetchUser,
     loginUser, 
     setAuthToken
 } from "../redux/slices/userSlice"
@@ -90,6 +91,7 @@ export const Login = () => {
         console.log('authHandler recieving access token ', token);
         //TODO Fix Setting the token in the state
         dispatch(setAuthToken(token))
+        dispatch(fetchUser(token))
 
         //this.fetchUser(token);
         //this.fetchPlaylists(token);
