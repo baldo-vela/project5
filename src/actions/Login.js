@@ -18,6 +18,7 @@ import { apiURL, clientURL, clientID, redirectUri, scopes, spotifyUserURL } from
 //Stylesheet for this component
 import SplashLogo from '../assets/images/animated_splash.gif';
 import '../stylesheets/Login.css';
+import { fetchPlaylists } from '../redux/slices/userPlaylistsSlice';
 
 export const Login = () => {
     // constructor() {
@@ -92,6 +93,7 @@ export const Login = () => {
         //TODO Fix Setting the token in the state
         dispatch(setAuthToken(token))
         dispatch(fetchUser(token))
+        dispatch(fetchPlaylists(token))
 
         //this.fetchUser(token);
         //this.fetchPlaylists(token);

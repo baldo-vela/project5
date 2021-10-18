@@ -1,36 +1,26 @@
+// RTK imports
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// Configuration
+import { spotifyUserURL } from "../../configurations/Spotify";
 
-
-/* 
-    // Pure Javascript
-    fetchPlaylists = (shouldRetry=true) => {
-        console.log('fetching playlists')
-        return fetch(playlistAPI, {
-        headers: {
-
-        'Authorization': 'Bearer ' + this.state.users[1].access_token
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log('playlists data', data)
-      if (data.error && shouldRetry) {
-        this.refreshToken()
-      } else {
-        console.log('setting playlists state')
-        this.setState({playlists: data})
-      }
-    })
-    .then(data => this.createPlaylist())
+export const fetchPlaylists = createAsyncThunk(
+  "userPlaylists/fetchStatus",
+  async (authToken, thunkAPI) => {
+    console.trace('Fetching Playlists for current User from Spotify: ',spotifyUserURL);
+    const data = await fetch( spotifyUserURL + "/playlists",
+      {
+        body: null,
+            headers: {
+                'Authorization': "Bearer " + authToken,
+                'Content-Type': 'application/json'
+            }
+      });
+      const json = await data.json();
+      console.log(json)
+      return json;
   }
+)
 
-  // Async Redux Thunk
-    async fucntion fetchPlaylists() {
-        console.log("fetching playlists");
-        const response = await fetch(playlistAPI, {
-
-    }
-*/
 
 //Long format to list out all the slice options for this slice
 const sliceOptions = {
@@ -44,16 +34,16 @@ const sliceOptions = {
   
   },
   extraReducers: {
-    [loadPlaylists.pending]: (state) => {
+    [fetchPlaylists.pending]: (state) => {
       state.isLoading = true;
       state.hasError = false;
     },
-    [loadPlaylists.fulfilled]: (state, action) => {
+    [fetchPlaylists.fulfilled]: (state, action) => {
       state.playlists = action.payload;
       state.isLoading = false;
       state.hasError = false;
     },
-    [loadPlaylists.rejected]: (state) => {
+    [fetchPlaylists.rejected]: (state) => {
       state.isLoading = false;
       state.hasError = true;
   }
@@ -61,3 +51,4 @@ const sliceOptions = {
 };
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
+export default userPlaylistsSlice.reducer
