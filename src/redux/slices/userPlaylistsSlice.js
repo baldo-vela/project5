@@ -60,7 +60,8 @@ const sliceOptions = {
   initialState: {
     playlists: [],
     isLoading: false,
-    hasError: false
+    hasError: false,
+    error: null,
   },
   reducers: {
   
