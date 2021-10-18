@@ -59,6 +59,8 @@ const sliceOptions = {
   name: "userPlaylists",
   initialState: {
     playlists: [],
+    nextPage: "",
+    offset: null,
     isLoading: false,
     hasError: false,
     error: null,
