@@ -16,22 +16,17 @@ import Main from './containers/Main'
 // TODO: move this to Main component import Nav from './containers/Nav'
 
 
-class App extends React.Component {
-    componentDidMount = () => {
-      
-    }
+function App(){
+
     
     //const dispatch = useDispatch();
-    //const { isLoggedIn } = useSelector(state => state.isLoggedIn);
-    render() {
-        return (
-            <div className="App">
-                {/* {this.code? <Main /> : <Login/> } */}
-                <Login  />
-                <Main />
-            </div>
-        )
-    }
+    //const ifLoggedIn = useSelector((state) => state.isLoggedIn);
+    return (
+        <div className="App">
+            <Login/>
+           
+        </div>
+    )
 }
 
 
