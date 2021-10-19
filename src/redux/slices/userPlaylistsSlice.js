@@ -83,6 +83,7 @@ const sliceOptions = {
       state.hasError = true;
   }
 }
+//TODO: Reformat the lifecycle states to NOT be booleans as per style guide https://redux.js.org/tutorials/fundamentals/part-7-standard-patterns
 };
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
