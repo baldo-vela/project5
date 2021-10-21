@@ -20,11 +20,10 @@ function App(props){
     
     //const dispatch = useDispatch();
     const isLoggedIn = props.isLoggedIn;
+    const user = props.user;
     return (
         <div className="App">
-            {isLoggedIn
-                ? <Login/>
-                : <Main/>
+            {isLoggedIn ? <Main/> : <Login/>
             }
         </div>
     )
@@ -32,7 +31,8 @@ function App(props){
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn
+        isLoggedIn: state.isLoggedIn,
+        user: state.user
     }
 }
 
