@@ -15,25 +15,28 @@ import Login from './actions/Login.js'
 import Main from './containers/Main'
 // TODO: move this to Main component import Nav from './containers/Nav'
 
-
 function App(props){
     
     //const dispatch = useDispatch();
-    const isLoggedIn = props.isLoggedIn;
+    //const isLoggedIn = useSelector(isLoggedIn);
     const user = props.user;
     return (
         <div className="App">
-            {isLoggedIn ? <Main/> : <Login/>
-            }
+            <Router>
+                <Route path="/" exact component={Login} /> 
+                {/* TODO: Set this route below to be private? */}
+                <Route path="/main" exact component={Main} />
+                
+            </Router>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
+    const { error } = state.userSlice.error;
     return {
-        isLoggedIn: state.isLoggedIn,
-        user: state.user
+        error
     }
 }
 
-export default connect(mapStateToProps)(App);
+export default App;
