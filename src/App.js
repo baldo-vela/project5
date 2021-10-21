@@ -1,6 +1,6 @@
 //React Dependancies
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 //Style Imports
@@ -16,18 +16,24 @@ import Main from './containers/Main'
 // TODO: move this to Main component import Nav from './containers/Nav'
 
 
-function App(){
-
+function App(props){
     
     //const dispatch = useDispatch();
-    //const ifLoggedIn = useSelector((state) => state.isLoggedIn);
+    const isLoggedIn = props.isLoggedIn;
     return (
         <div className="App">
-            <Login/>
-           
+            {isLoggedIn
+                ? <Login/>
+                : <Main/>
+            }
         </div>
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
