@@ -59,8 +59,6 @@ const sliceOptions = {
   name: "userPlaylists",
   initialState: {
     playlists: [],
-    nextPage: "",
-    offset: null,
     isLoading: false,
     hasError: false,
     error: null,
@@ -88,3 +86,5 @@ const sliceOptions = {
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
 export default userPlaylistsSlice.reducer
+
+export const selectUserPlaylists = (state) => state.playlists.items;
