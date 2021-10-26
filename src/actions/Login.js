@@ -6,7 +6,6 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import {
     currentUser,
     fetchUser,
-    loginUser, 
     setAuthToken
 } from "../redux/slices/userSlice"
 
@@ -20,19 +19,9 @@ import SplashLogo from '../assets/images/animated_splash.gif';
 import '../stylesheets/Login.css';
 import { fetchPlaylists } from '../redux/slices/userPlaylistsSlice';
 
-export const Login = () => {
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         token: null,
-    //         error: null,
-    //         loading: false,
-    //         user: [],
-    //         playlists: [],
-    //     };
-    // }
+const Login = () => {
     const dispatch = useDispatch();
-    const { hasError } = useSelector((state) => state.currentUser);
+    //const { hasError } = useSelector((state) => state.currentUser);
 
     
     const tokenHandler = (token) => {
@@ -65,4 +54,4 @@ export const Login = () => {
     
 }
 
-export default connect()(Login);
+export default Login;
