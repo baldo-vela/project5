@@ -74,6 +74,7 @@ const sliceOptions = {
     name: "currentUser",
     initialState: {
         authToken: null,
+        expiresIn: null,
         user: {},
         isLoggedIn: false,
         isLoading: false,
@@ -107,7 +108,11 @@ const sliceOptions = {
         }
     }
 }
+//Exports the slice
+// #createSlice is a function that takes an object of options and returns a reducer function.
 export const userSlice = createSlice(sliceOptions);
 
+
 export const { setAuthToken, setCurrentUser } = userSlice.actions;
-export default userSlice.reducer
+export default userSlice.reducer;
+export const selectUserLoginStatus = (state) => state.isLoggedIn;
