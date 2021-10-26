@@ -6,6 +6,8 @@ import faker from 'faker'
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
+import '../stylesheets/Dashboard.css'
+
 // Dummy Data
 const data = new Array(100).fill().map((value, id) => ({
      id: id, 
@@ -13,11 +15,11 @@ const data = new Array(100).fill().map((value, id) => ({
      body: faker.lorem.sentences(4) 
     }))
 
-const Main = ({}) => {
+const Dashboard = ({}) => {
     
-    const Row = ({ index, key, style }) => (
+    const playlistItem = ({ index, key, style }) => (
         <div>
-            <div key={key} style={style} className="playlist">
+            <div key={key} style={style} className="playlist-preview">
                 <h3>{`${data[index].title}-${data[index].id}`}</h3>
                 <p>{data[index].body}</p>
             </div>
@@ -26,9 +28,9 @@ const Main = ({}) => {
 
     return (
         <div
-            className='main'
+            className='dashboard'
             >
-            <h1>Main Page</h1>
+            <h1>Dashboard Page</h1>
             <AutoSizer>
                 {({ height, width }) => (
                         <List
@@ -37,7 +39,7 @@ const Main = ({}) => {
                             itemSize={120}
                             width={width}
                         >
-                            {Row}
+                            {playlistItem}
                         </List>
                 )
                 }
@@ -46,4 +48,4 @@ const Main = ({}) => {
     );
 }
 
-export default Main;
+export default Dashboard;
