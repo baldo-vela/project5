@@ -38,7 +38,6 @@ const Login = (props) => {
     const tokenHandler = (token) => {
         //Note .trace outputs to the console with where the function is called
         console.log('authHandler recieving access token ', token);
-        //TODO Fix Setting the token in the state
         dispatch(setAuthToken(token))
         dispatch(fetchUser(token))
         dispatch(fetchPlaylists(token))
