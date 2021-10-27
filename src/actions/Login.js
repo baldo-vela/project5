@@ -20,11 +20,20 @@ import SplashLogo from '../assets/images/animated_splash.gif';
 import '../stylesheets/Login.css';
 import { fetchPlaylists } from '../redux/slices/userPlaylistsSlice';
 
-const Login = () => {
+const Login = (props) => {
     const dispatch = useDispatch();
     //Creates a user object from the redux store, then we will use the evaluated lifecycle values
     //const currentUser = useSelector((state: RootState) => state.currentUser.user);
+    const user = props.user;
+    const token = props.token;
+    const userHasError = props.userHasError;
+    const userError = props.userError;
+    const playlistsError = props.playlistsError;
+    const playlistsHasError = props.playlistsHasError;
 
+    const UserErrorWarning = (props) => {
+
+    }
     
     const tokenHandler = (token) => {
         //Note .trace outputs to the console with where the function is called
@@ -39,6 +48,7 @@ const Login = () => {
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
+                {/* <UserErrorWarning error={user}/> */}
 
                 <SpotifyAuth
                     redirectUri={clientURL}
@@ -52,6 +62,10 @@ const Login = () => {
     
 }
 const mapStateToProps = (state) => ({
+    /* See: https://react-redux.js.org/using-react-redux/connect-mapstate 
+    Let mapStateToProps Reshape the Data from the Store
+    mapStateToProps Functions Should Be Fast
+    mapStateToProps Functions Should Be Pure and Synchronous​ */
     user: state.userSliceReducer.user,
     token: state.userSliceReducer.authToken,
     userHasError: state.userSliceReducer.hasError,
