@@ -8,6 +8,7 @@ import {
     fetchUser,
     setAuthToken
 } from "../redux/slices/userSlice"
+//import { RootState } from '../redux/store'
 
 //External Libraries
 import { SpotifyAuth } from 'react-spotify-auth';
@@ -21,7 +22,8 @@ import { fetchPlaylists } from '../redux/slices/userPlaylistsSlice';
 
 const Login = () => {
     const dispatch = useDispatch();
-    //const { hasError } = useSelector((state) => state.currentUser);
+    //Creates a user object from the redux store, then we will use the evaluated lifecycle values
+    //const currentUser = useSelector((state: RootState) => state.currentUser.user);
 
     
     const tokenHandler = (token) => {
@@ -37,11 +39,7 @@ const Login = () => {
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
-                {/* <a href='#'
-                    onClick={() => this.onClickHandler()}
-                >
-                    Login with Spotify
-                </a> */}
+
                 <SpotifyAuth
                     redirectUri={clientURL}
                     clientID={clientID}
@@ -53,5 +51,13 @@ const Login = () => {
         );
     
 }
+const mapStateToProps = (state) => ({
+    user: state.userSliceReducer.user,
+    token: state.userSliceReducer.authToken,
+    userHasError: state.userSliceReducer.hasError,
+    userError: state.userSliceReducer.userError,
+    playlistsError: state.userPlaylistsReducer.error,
+    playlistsHasError: state.userPlaylistsReducer.hasError,
+})
 
-export default Login;
+export default connect(mapStateToProps)(Login);
