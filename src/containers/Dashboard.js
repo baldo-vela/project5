@@ -22,8 +22,7 @@ const data = new Array(100).fill().map((value, id) => ({
 
 const Dashboard = (props) => {
     //Selects the user's playlists from the Redux store
-    const playlists = useSelector((state) => state.playlists);
-
+    const playlists = props.playlists;
 
     const playlistItem = ({ index, key, style }) => (
         <div>
@@ -51,6 +50,7 @@ const Dashboard = (props) => {
                         </List>
                 )
                 }
+                
             </AutoSizer>
         </div>
     );
@@ -67,4 +67,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);
