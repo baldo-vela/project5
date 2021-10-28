@@ -11,7 +11,7 @@ import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import '../stylesheets/Dashboard.css'
-import { useSelector } from 'react-redux';
+import { connect, useSelector, } from 'react-redux';
 
 // Dummy Data
 const data = new Array(100).fill().map((value, id) => ({
@@ -20,7 +20,7 @@ const data = new Array(100).fill().map((value, id) => ({
      body: faker.lorem.sentences(4) 
     }))
 
-const Dashboard = ({}) => {
+const Dashboard = (props) => {
     //Selects the user's playlists from the Redux store
     const playlists = useSelector((state) => state.playlists);
 
@@ -54,6 +54,17 @@ const Dashboard = ({}) => {
             </AutoSizer>
         </div>
     );
+}
+
+const mapStateToProps = (state) => {
+    return {
+        //Note playlists is an object with keys:
+        // href, items[] (max length 20), limit, next, offset, previous, total
+        playlists: state.userPlaylistsReducer.playlists,
+        isLoading: state.userPlaylistsReducer.isLoading,
+        hasError: state.userPlaylistsReducer.hasError,
+        errorMessage: state.userPlaylistsReducer.error,
+    }
 }
 
 export default Dashboard;
