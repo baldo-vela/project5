@@ -62,8 +62,8 @@ const mapStateToProps = (state) => {
         // href, items[] (max length 20), limit, next, offset, previous, total
         playlists: state.userPlaylistsReducer.playlists,
         isLoading: state.userPlaylistsReducer.isLoading,
-        hasError: state.userPlaylistsReducer.hasError,
-        errorMessage: state.userPlaylistsReducer.error,
+        // hasError: state.userPlaylistsReducer.hasError,
+        // errorMessage: state.userPlaylistsReducer.error,
     }
 }
 
