@@ -42,16 +42,21 @@ import React, {Component} from 'react'
 class PlaylistPreview extends Component {
     constructor(props){
         super(props)
-
     }
 
     render() {
-        const { title, description} = this.props.playlist;
+        // { spotifyID, name: "Starlight Brigade Vibes", description: "Does what it says on the tin", owner: spotify username }
+        const { id, name, description, owner } = this.props.playlist;
         return(
             <div id="playlist">
-                <h1>{title}</h1>
+                <h1>{name}</h1>
                 <p>{description}</p>
+                <p>{href}</p>
+                <p>id: {id}</p>
+                <p>Owner: {owner}</p>
             </div>
         )
     }
 }
+
+export default PlaylistPreview
