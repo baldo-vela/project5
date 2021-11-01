@@ -14,7 +14,7 @@ import PlaylistPreview from './PlaylistPreview';
 import '../stylesheets/Dashboard.css'
 import { connect, useSelector, } from 'react-redux';
 
-// Dummy Data
+//Dummy Data
 const data = new Array(100).fill().map((value, id) => ({
      id: id, 
      title: faker.lorem.words(5), 
@@ -23,18 +23,24 @@ const data = new Array(100).fill().map((value, id) => ({
 
 const Dashboard = (props) => {
     //Selects the user's playlists from the Redux store
-    const playlists = props.playlists.map(playlist => <PlaylistPreview playlist={playlist}/>);
+    //const playlists = props.listOfPlaylists;
+    console.log(props);
+    //TODO: Add a loading state
+    //ToDo: Add an error state
+    //TODO: use dispatch to update the Redux store with the users as they scroll though using infinite loader extension
+    //TODO: implement infinite scroll extension D:
+    const playlists = props.playlists;
+    console.log(playlists);
 
-    const playlistItem = ({ index, key, style }) => (
-        <div>
-            <div key={key} style={style} className="playlist-preview">
-                <h3>{`${data[index].title}-${data[index].id}`}</h3>
-                <p>{data[index].body}</p>
-            </div>
-        </div>
-    )
-
-    //const playlistList = playlists.items.map((playlist) => ();
+    // // This is for testing the Auto-Sizer
+    // const playlistItem = ({ index, key, style }) => (
+    //     <div>
+    //         <div key={key} style={style} className="playlist-preview">
+    //             <h3>{`${data[index].title}-${data[index].id}`}</h3>
+    //             <p>{data[index].body}</p>
+    //         </div>
+    //     </div>
+    // )
 
 
     return (
@@ -58,7 +64,7 @@ const Dashboard = (props) => {
             </AutoSizer> */}
             <div>
                 <h2>Your Playlists</h2>
-                {/* {playlistList}     */}
+                
             </div>
         </div>
     );
@@ -66,9 +72,9 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        //Note playlists is an object with keys:
-        // href, items[] (max length 20), limit, next, offset, previous, total
-        playlists: state.userPlaylistsReducer.playlists,
+        //Note: playlists is an object with keys:
+            // href, items[] (max length 20), limit, next, offset, previous, total
+        playlists: state.userPlaylistsReducer.playlists.items,
         isLoading: state.userPlaylistsReducer.isLoading,
         // hasError: state.userPlaylistsReducer.hasError,
         // errorMessage: state.userPlaylistsReducer.error,
