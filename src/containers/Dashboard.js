@@ -9,10 +9,10 @@ import React from 'react'
 //For Rendering the list of playlists
 // import { FixedSizeList as List } from 'react-window';
 // import AutoSizer from 'react-virtualized-auto-sizer';
-// import PlaylistPreview from './PlaylistPreview';
 
 import '../stylesheets/Dashboard.css'
 import { connect, } from 'react-redux';
+import PlaylistPreview from './PlaylistPreview';
 
 //Dummy Data
 // const data = new Array(100).fill().map((value, id) => ({
@@ -29,8 +29,11 @@ const Dashboard = (props) => {
     //ToDo: Add an error state
     //TODO: use dispatch to update the Redux store with the users as they scroll though using infinite loader extension
     //TODO: implement infinite scroll extension D:
-    const playlists = props.playlists;
-    console.log(playlists);
+    console.log(props.playlists);
+    const testPlaylists = props.playlists;
+    console.log('Testing Playlists:', testPlaylists);
+    //testPlaylists.map(p => console.log(p.id));
+    
 
     // // This is for testing the Auto-Sizer, and left here for reference
     // const playlistItem = ({ index, key, style }) => (
@@ -64,7 +67,7 @@ const Dashboard = (props) => {
             </AutoSizer> */}
             <div>
                 <h2>Your Playlists</h2>
-                
+                {/* {playlists} */}
             </div>
         </div>
     );
