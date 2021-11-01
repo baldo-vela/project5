@@ -40,9 +40,6 @@
 import React, {Component} from 'react'
 
 class PlaylistPreview extends Component {
-    constructor(props){
-        super(props)
-    }
 
     render() {
         // { spotifyID, name: "Starlight Brigade Vibes", description: "Does what it says on the tin", owner: spotify username }

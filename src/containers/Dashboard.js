@@ -4,22 +4,22 @@
 import React from 'react'
 
 //For creating dummy data
-import faker from 'faker'
+// import faker from 'faker'
 
 //For Rendering the list of playlists
-import { FixedSizeList as List } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
-import PlaylistPreview from './PlaylistPreview';
+// import { FixedSizeList as List } from 'react-window';
+// import AutoSizer from 'react-virtualized-auto-sizer';
+// import PlaylistPreview from './PlaylistPreview';
 
 import '../stylesheets/Dashboard.css'
-import { connect, useSelector, } from 'react-redux';
+import { connect, } from 'react-redux';
 
 //Dummy Data
-const data = new Array(100).fill().map((value, id) => ({
-     id: id, 
-     title: faker.lorem.words(5), 
-     body: faker.lorem.sentences(4) 
-    }))
+// const data = new Array(100).fill().map((value, id) => ({
+//      id: id, 
+//      title: faker.lorem.words(5), 
+//      body: faker.lorem.sentences(4) 
+//     }))
 
 const Dashboard = (props) => {
     //Selects the user's playlists from the Redux store
@@ -32,7 +32,7 @@ const Dashboard = (props) => {
     const playlists = props.playlists;
     console.log(playlists);
 
-    // // This is for testing the Auto-Sizer
+    // // This is for testing the Auto-Sizer, and left here for reference
     // const playlistItem = ({ index, key, style }) => (
     //     <div>
     //         <div key={key} style={style} className="playlist-preview">

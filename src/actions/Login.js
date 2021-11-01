@@ -2,9 +2,13 @@
 
 //React Libraries
 import React from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { 
+    connect, 
+    useDispatch, 
+    // useSelector, 
+} from 'react-redux'
 import {
-    currentUser,
+    // currentUser,
     fetchUser,
     setAuthToken
 } from "../redux/slices/userSlice"
@@ -14,7 +18,14 @@ import { Redirect } from 'react-router-dom'
 //External Libraries
 import { SpotifyAuth } from 'react-spotify-auth';
 //Configuration File for Spotify
-import { apiURL, clientURL, clientID, redirectUri, scopes, spotifyUserURL } from '../configurations/Spotify';
+import { 
+    // apiURL, 
+    clientURL, 
+    clientID, 
+    // redirectUri, 
+    scopes, 
+    // spotifyUserURL 
+} from '../configurations/Spotify';
 
 //Stylesheet for this component
 import SplashLogo from '../assets/images/animated_splash.gif';
@@ -25,18 +36,18 @@ const Login = (props) => {
     const dispatch = useDispatch();
     //Creates a user object from the redux store, then we will use the evaluated lifecycle values
     //const currentUser = useSelector((state: RootState) => state.currentUser.user);
-    const user = props.user;
-    const token = props.token;
-    const userHasError = props.userHasError;
-    const userError = props.userError;
+    // const user = props.user;
+    // const token = props.token;
+    // const userHasError = props.userHasError;
+    // const userError = props.userError;
     const userIsLoggedIn = props.userIsLoggedIn;
-    const playlistsError = props.playlistsError;
-    const playlistsHasError = props.playlistsHasError;
+    // const playlistsError = props.playlistsError;
+    // const playlistsHasError = props.playlistsHasError;
 
-    const UserErrorWarning = (props) => {
-        //ToDO: Add Error Handling
-        //Return the error messages from the async actions for the render return
-    }
+    // const UserErrorWarning = (props) => {
+    //     //ToDO: Add Error Handling
+    //     //Return the error messages from the async actions for the render return
+    // }
     
     const tokenHandler = (token) => {
         //Note .trace outputs to the console with where the function is called

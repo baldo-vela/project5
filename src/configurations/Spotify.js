@@ -1,5 +1,5 @@
 //where we need to authenticate using Spotify
-const authEndpoint = "https://accounts.spotify.com/authorize";
+//const authEndpoint = "https://accounts.spotify.com/authorize";
 
 //Where we told the Spotify API to redirect us back to
 export const redirectUri = "https://localhost:3001/";

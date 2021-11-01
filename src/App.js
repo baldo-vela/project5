@@ -1,7 +1,7 @@
 //React Dependancies
 import React from 'react'
 //import { connect, useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 //Style Imports
 import './stylesheets/App.css';
