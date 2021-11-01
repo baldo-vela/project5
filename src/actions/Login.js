@@ -8,6 +8,7 @@ import {
     fetchUser,
     setAuthToken
 } from "../redux/slices/userSlice"
+import { Redirect } from 'react-router-dom'
 //import { RootState } from '../redux/store'
 
 //External Libraries
@@ -28,6 +29,7 @@ const Login = (props) => {
     const token = props.token;
     const userHasError = props.userHasError;
     const userError = props.userError;
+    const userIsLoggedIn = props.userIsLoggedIn;
     const playlistsError = props.playlistsError;
     const playlistsHasError = props.playlistsHasError;
 
@@ -44,7 +46,8 @@ const Login = (props) => {
         dispatch(fetchPlaylists(token))
     }
 
-
+    if (!userIsLoggedIn) { 
+        //TODO: Implement better error handling and routing logic   
         return (
             <div className="login">
                 <img src={SplashLogo} alt="Animated Greatest Hits Logo" />
@@ -59,6 +62,11 @@ const Login = (props) => {
                 />
             </div>
         );
+    } else {
+        return (
+            <Redirect to="/main" />
+        );
+    }
     
 }
 const mapStateToProps = (state) => ({
@@ -68,6 +76,7 @@ const mapStateToProps = (state) => ({
     mapStateToProps Functions Should Be Pure and Synchronous​ */
     user: state.userSliceReducer.user,
     token: state.userSliceReducer.authToken,
+    userIsLoggedIn: state.userSliceReducer.isLoggedIn,
     userHasError: state.userSliceReducer.hasError,
     userError: state.userSliceReducer.userError,
     playlistsError: state.userPlaylistsReducer.error,
