@@ -9,6 +9,7 @@ class PlaylistPreview extends Component {
         }
     }
     viewDetails = () =>{
+        console.log('view details for this playlist:', this.props.playlist.id);
         history.push(`/playlist/${this.props.playlist.id}`);
     }
     render() {

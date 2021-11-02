@@ -1,7 +1,7 @@
 //React Dependancies
 import React from 'react'
 //import { connect, useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Style Imports
 import './stylesheets/App.css';
@@ -14,7 +14,8 @@ import history from './history';
 
 //Container Imports
 import Dashboard from './containers/Dashboard';
-// TODO: move this to Main component import Nav from './containers/Nav'
+import PlaylistDetails from './containers/PlaylistDetails';
+
 
 function App(){
     //let history = useHistory();
@@ -25,13 +26,16 @@ function App(){
     return (
         <div className="App">
             <Router>
-                
-                <Route path='/' exact component={Login} /> 
-                {/* TODO: Set this route below to be private? */}
-                <Route path='/main' render={((props)=> (
-                    <Dashboard {...props} history={history} />
-                ))} />
-                
+                <Switch>    
+                    <Route exact path='/' exact component={Login} /> 
+                    {/* TODO: Set this route below to be private? */}
+                    <Route path='/main' render={((props)=> (
+                        <Dashboard {...props} history={history} />
+                    ))} />
+                    <Route exact path='/playlist/:id' render={((props)=> (
+                        <PlaylistDetails {...props} history={history} />
+                    ))} />
+                </Switch>    
                 
             </Router>
         </div>
