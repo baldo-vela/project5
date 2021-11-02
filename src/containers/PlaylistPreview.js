@@ -11,7 +11,7 @@ class PlaylistPreview extends Component {
                 <p>{description}</p>
                 <p>{spotifyLink}</p>
                 <p>id: {id}</p>
-                <p>Owner: {owner}</p>
+                <p>Owner: {owner.display_name}</p>
             </div>
         )
     }

@@ -63,10 +63,12 @@ class Dashboard extends React.Component{
         console.log('Props for Dashboard',this.props);
         const playlists = this.props.playlists;
         console.log('Playlists:', playlists);
-        const ListOfPlaylists = playlists.map(p => {
-            
-            <PlaylistPreview playlist={p} />
-        });
+        let listOfPlaylists = playlists.map(p =>
+            <PlaylistPreview key={p.id} playlist={p} />
+        );
+        const test = this.props.playlists[0];
+        console.log('Test', test);
+
         return (
             
             <div
@@ -89,7 +91,7 @@ class Dashboard extends React.Component{
                 </AutoSizer> */}
                 <div>
                     <h2>Your Playlists</h2>
-                    <div>{ListOfPlaylists}</div>
+                    {listOfPlaylists}
                 </div>
             </div>
         );
