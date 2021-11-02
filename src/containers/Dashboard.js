@@ -7,8 +7,8 @@ import React from 'react'
 // import faker from 'faker'
 
 //For Rendering the list of playlists
-// import { FixedSizeList as List } from 'react-window';
-// import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 import '../stylesheets/Dashboard.css'
 import { connect, dispatch } from 'react-redux';
@@ -66,8 +66,7 @@ class Dashboard extends React.Component{
         let listOfPlaylists = playlists.map(p =>
             <PlaylistPreview key={p.id} playlist={p} />
         );
-        const test = this.props.playlists[0];
-        console.log('Test', test);
+
 
         return (
             
