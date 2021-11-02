@@ -11,8 +11,9 @@ import React from 'react'
 // import AutoSizer from 'react-virtualized-auto-sizer';
 
 import '../stylesheets/Dashboard.css'
-import { connect, } from 'react-redux';
+import { connect, dispatch } from 'react-redux';
 import PlaylistPreview from './PlaylistPreview';
+import { render } from 'react-dom';
 
 //Dummy Data
 // const data = new Array(100).fill().map((value, id) => ({
@@ -21,18 +22,24 @@ import PlaylistPreview from './PlaylistPreview';
 //      body: faker.lorem.sentences(4) 
 //     }))
 
-const Dashboard = (props) => {
+class Dashboard extends React.Component{
     //Selects the user's playlists from the Redux store
     //const playlists = props.listOfPlaylists;
-    console.log(props);
-    //TODO: Add a loading state
-    //ToDo: Add an error state
-    //TODO: use dispatch to update the Redux store with the users as they scroll though using infinite loader extension
-    //TODO: implement infinite scroll extension D:
-    console.log(props.playlists);
-    const testPlaylists = props.playlists;
-    console.log('Testing Playlists:', testPlaylists);
-    //testPlaylists.map(p => console.log(p.id));
+    // console.log(props);
+    // //TODO: Add a loading state
+    // //ToDo: Add an error state
+    // //TODO: use dispatch to update the Redux store with the user's playlists dynamically as they scroll though using infinite loader extension
+    // //TODO: implement infinite scroll extension D:
+    // console.log('Displaying Props for Dashboards: ',props.playlists);
+    // const testPlaylists = Object.values(props.playlists);
+    // console.log('Testing Playlists:', testPlaylists);
+    // testPlaylists.map(p => {
+    //     console.log(p.id);
+    //     console.log(p.name);
+    //     console.log(p.description);
+    //     console.log(p.href);
+    //     console.log(p.owner.display_name);
+    // });
     
 
     // // This is for testing the Auto-Sizer, and left here for reference
@@ -45,32 +52,48 @@ const Dashboard = (props) => {
     //     </div>
     // )
 
-
-    return (
-        <div
-            className='dashboard'
-            >
-            <h1>Dashboard Page</h1>
-            {/* <AutoSizer>
-                {({ height, width }) => (
-                        <List
-                            height={height}
-                            itemCount={20}
-                            itemSize={120}
-                            width={width}
-                        >
-                            {playlistItem}
-                        </List>
-                )
-                }
-                
-            </AutoSizer> */}
-            <div>
-                <h2>Your Playlists</h2>
-                {/* {playlists} */}
+    render(){
+        if (this.props.playlists=== undefined){
+            return(
+                <div>
+                    <h1>Loading...</h1>
+                </div>
+            )
+        }
+        console.log('Props for Dashboard',this.props);
+        const playlists = this.props.playlists;
+        console.log('Playlists:', playlists);
+        const ListOfPlaylists = playlists.map(p => {
+            
+            <PlaylistPreview playlist={p} />
+        });
+        return (
+            
+            <div
+                className='dashboard'
+                >
+                <h1>Dashboard Page</h1>
+                {/* <AutoSizer>
+                    {({ height, width }) => (
+                            <List
+                                height={height}
+                                itemCount={20}
+                                itemSize={120}
+                                width={width}
+                            >
+                                {playlistItem}
+                            </List>
+                    )
+                    }
+                    
+                </AutoSizer> */}
+                <div>
+                    <h2>Your Playlists</h2>
+                    <div>{ListOfPlaylists}</div>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -79,6 +102,7 @@ const mapStateToProps = (state) => {
             // href, items[] (max length 20), limit, next, offset, previous, total
         playlists: state.userPlaylistsReducer.playlists.items,
         isLoading: state.userPlaylistsReducer.isLoading,
+        authToken: state.userSliceReducer.authToken,
         // hasError: state.userPlaylistsReducer.hasError,
         // errorMessage: state.userPlaylistsReducer.error,
     }
