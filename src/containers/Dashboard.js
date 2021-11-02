@@ -13,7 +13,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import '../stylesheets/Dashboard.css'
 import { connect, dispatch } from 'react-redux';
 import PlaylistPreview from './PlaylistPreview';
-import { render } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 
 //Dummy Data
 // const data = new Array(100).fill().map((value, id) => ({
@@ -61,6 +61,7 @@ class Dashboard extends React.Component{
             )
         }
         console.log('Props for Dashboard',this.props);
+        console.log("History:", this.props.history);
         const playlists = this.props.playlists;
         console.log('Playlists:', playlists);
         let listOfPlaylists = playlists.map(p =>
@@ -74,20 +75,6 @@ class Dashboard extends React.Component{
                 className='dashboard'
                 >
                 <h1>Dashboard Page</h1>
-                {/* <AutoSizer>
-                    {({ height, width }) => (
-                            <List
-                                height={height}
-                                itemCount={20}
-                                itemSize={120}
-                                width={width}
-                            >
-                                {playlistItem}
-                            </List>
-                    )
-                    }
-                    
-                </AutoSizer> */}
                 <div>
                     <h2>Your Playlists</h2>
                     {listOfPlaylists}
