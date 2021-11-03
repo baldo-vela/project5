@@ -1,5 +1,6 @@
 // import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
+import currentPlaylistSlice from './slices/currentPlaylistSlice';
 import userSlice from './slices/userSlice';
 import userPlaylistsSlice from './slices/userPlaylistsSlice';
 // import userSliceReducer, { setAuthToken } from './slices/userSlice';
@@ -9,6 +10,7 @@ export default configureStore ({
     reducer: {
         userSliceReducer: userSlice,
         userPlaylistsReducer: userPlaylistsSlice,
+        currentPlaylistReducer: currentPlaylistSlice,
     },
     devTools: process.env.NODE_ENV !== 'production',
     })
