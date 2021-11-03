@@ -23,31 +23,6 @@ import { spotifyUserURL } from '../../configurations/Spotify';
     updated_at: "2021-07-16 02:15:29.123883000 +0000">] 
 */
 
-//Gets the current user from the Spotify API
-/* async const fetchUser {
-    try {
-        //console.log("Fetching user...", token);
-        let resp = await fetch(spotifyUserURL, 
-            {
-                body: null,
-                headers: {
-                    'Authorization': "Bearer " + token,
-                    'Content-Type': 'application/json'
-                },
-                // method: 'GET',
-                // mode: 'cors',
-            }
-        );
-        if(!resp.ok) {
-            throw new Error(resp.statusText);
-        }
-        let data = await resp.json();
-        console.log("User Fetched");
-        console.log(data);
-    } catch (error) {
-        console.trace(error);
-    }
-}; */
 // #createAsyncThunk requires 3 parameters:
     // a string action type representing the lifecycle of the async request
     // a payload creator callback function that returns a promise containing the result of some async logic, possibly with a value synchronously. It is a function that contains all the logic needed to compute an appropirate result. This can include an AJAX data fetch, multiple AJAX calls, interactions with React Native storage, etc.
@@ -76,6 +51,7 @@ export const fetchUser = createAsyncThunk(
 //Provides the current Auth Token to the Application from the store
 const selectAuthToken = (state) => state.userSliceReducer.authToken;
 //Provides the application with time left before the auth token expires and needs to be refreshed
+//TODO: Refactor for better User Experience
 const selectAuthTokenExpires = (state) => state.userSliceReducer.expiresIn;
 export const selectAuth = createSelector(
   [selectAuthToken, selectAuthTokenExpires],
@@ -119,6 +95,7 @@ const sliceOptions = {
     reducers: {
         setAuthToken(state, action) {
             state.authToken = action.payload;
+            state.expiresIn = Date()     
         },
         setCurrentUser: (state, action) => {
             state.user = action.payload;
