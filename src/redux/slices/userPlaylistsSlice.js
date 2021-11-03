@@ -98,3 +98,7 @@ export const selectPreviousPlaylistsPage = createSelector((state) => state.userP
 export const selectTotalPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.total);
 export const selectLimitPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.limit);
 export const selectOffsetPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.offset);
+
+//Selecting Specific Playlists from the Store
+export const selectPlaylistByID = createSelector((state, id) => state.userPlaylistsReducer.playlists.items.find((playlist) => playlist.id === id));
+//const selectPlaylistByName = (state, name) => state.userPlaylistsReducer.playlists.items.find((playlist) => playlist.name === name);
