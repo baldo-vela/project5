@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 function PlaylistDetails() {
     const location = useLocation();
+
     // Selects the playlist from the redux store using the id from the url
 
     
@@ -13,7 +14,7 @@ function PlaylistDetails() {
             <div className='playlist-details_header'>
                 <div className='playlist-details_header_title'>
                     <h1>Detail View</h1>
-                    {/* {playlist.name} */}
+                    
                 </div>
                 <div className='playlist-details_header_subtitle'>
                     {/* {playlist.description} */}

@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
+import { connect, } from 'react-redux';
+import { selectPlaylistByID } from '../redux/slices/userPlaylistsSlice'; 
 import history from '../history';
 
 class PlaylistPreview extends Component {
     constructor(){
         super();
         this.state = {
-            isLoading: true,
+            isLoading: false,
+            currentPlaylist: [],
         }
     }
-    viewDetails = () =>{
-        console.log('view details for this playlist:', this.props.playlist.id);
-        history.push(`/playlist/${this.props.playlist.id}`);
+    handleViewDetails = (e) =>{
+        const selectedPlaylistId = this.props.playlist.id
+        console.log('view details for this playlist:', selectedPlaylistId);
+        history.push(`/playlist/${selectedPlaylistId}`);
+        this.setState({
+            currentPlaylist: e.target.id
+        });
+        // this.props.dispatch({});
     }
     render() {
         //TODO: Fix issue with <p> tags in descrip:
@@ -19,8 +27,8 @@ class PlaylistPreview extends Component {
         const { id, name, description, owner, spotifyLink } = this.props.playlist;
         return(
             <div className='playlist-preview' key={`playlist-${id}`}>
-                <h1 onClick={this.viewDetails}className='playlist-preview-name'>{name}</h1>
-                <p>{description ? description : '' }</p>
+                <h1 onClick={this.handleViewDetails}className='playlist-preview-name'>{name}</h1>
+                <p className="playlist-description">{description ? description : '' }</p>
                 <p>{spotifyLink}</p>
                 <p>id: {id}</p>
                 <p>Owner: {owner.display_name}</p>
@@ -28,5 +36,9 @@ class PlaylistPreview extends Component {
         )
     }
 }
-
-export default PlaylistPreview
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectPlaylistById: (id) => dispatch(selectPlaylistByID(id)),
+    }
+}
+export default connect(mapDispatchToProps)(PlaylistPreview);
