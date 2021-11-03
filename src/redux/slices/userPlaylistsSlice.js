@@ -1,5 +1,5 @@
 // RTK imports
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 // Configuration
 import { spotifyUserURL } from "../../configurations/Spotify";
 
@@ -86,5 +86,8 @@ const sliceOptions = {
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
 export default userPlaylistsSlice.reducer
-
-export const selectUserPlaylists = (state) => state.playlists.items;
+//Provides the application with the current array of playlists for the current user
+export const selectUserPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.items);
+export const selectUserPlaylistsLoadingStatus = createSelector((state) => state.userPlaylistsReducer.isLoading);
+export const selectUserPlaylistsErrorStatus = createSelector((state) => state.userPlaylistsReducer.hasError);
+export const selectUserPlaylistsError = createSelector((state) => state.userPlaylistsReducer.error);
