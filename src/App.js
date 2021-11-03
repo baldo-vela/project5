@@ -22,7 +22,7 @@ function App(){
     //const dispatch = useDispatch();
     //const isLoggedIn = useSelector(isLoggedIn);
     //const user = props.user;
-    // TODO : Put in Breakpoint to verifiy store default state
+    // TODO : Pass the detail view the props it needs to render the selected playlist
     return (
         <div className="App">
             <Router>
