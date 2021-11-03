@@ -10,10 +10,10 @@ export const fetchPlaylists = createAsyncThunk(
     const data = await fetch( spotifyUserURL + "/playlists",
       {
         body: null,
-            headers: {
-                'Authorization': "Bearer " + authToken,
-                'Content-Type': 'application/json'
-            }
+        headers: {
+          'Authorization': "Bearer " + authToken,
+          'Content-Type': 'application/json'
+        }
       });
       const json = await data.json();
       console.log(json)

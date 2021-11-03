@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Player from '../components/Player';
 
-import { useLocation } from 'react-router-dom';
-
-function PlaylistDetails() {
-    const location = useLocation();
-    console.log(location);
-    // Selects the playlist from the redux store using the id from the url
-
+const PlaylistDetails = (props) => {
+    // const location = useLocation();
+    console.log("Logging Props", props);
+    const currentPlaylistId = props.match.params.id;
+    console.log("CurrentPlaylistId:", currentPlaylistId);
+    const currentPlaylist = useSelector((state) => state.userPlaylistsReducer.playlists.items.find(p => p.id === currentPlaylistId))
+    console.log("Current Playlist", currentPlaylist)
+    const authToken = useSelector((state)=> state.userSliceReducer.authToken)
     
-    return (      
+    return (     
         <div className='playlist-details'>
             <div className='playlist-details_header'>
                 <div className='playlist-details_header_title'>
-                    <h1>Detail View</h1>
-                    
+                    <h1>{currentPlaylist.name}</h1>    
                 </div>
                 <div className='playlist-details_header_subtitle'>
-                    {/* {playlist.description} */}
+                    {currentPlaylist.description}
                 </div>
                 <div className='playlist-details-player'>
-                    <Player />
+                    <Player authToken={authToken} playlistUri={currentPlaylist.uri}/>
                 </div>
             </div>
         </div>

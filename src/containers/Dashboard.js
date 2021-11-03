@@ -30,23 +30,14 @@ function Dashboard() {
             <h1>Dashboard Page</h1>
             <div>
                 <h2>Your Playlists</h2>
-                {playlists.map(p=> <PlaylistPreview playlist={p}/>)}
+                {/* TODO: Review optional chaining opperator in MDN */}
+                {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining*/}
+                {playlists?.length && playlists.map(p=> <PlaylistPreview playlist={p}/>)}
             </div>
         </div>
     )
 
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         //Note: playlists is an object with keys:
-//             // href, items[] (max length 20), limit, next, offset, previous, total
-//         playlists: state.userPlaylistsReducer.playlists.items,
-//         isLoading: state.userPlaylistsReducer.isLoading,
-//         authToken: state.userSliceReducer.authToken,
-//         // hasError: state.userPlaylistsReducer.hasError,
-//         // errorMessage: state.userPlaylistsReducer.error,
-//     }
-// }
 
 export default Dashboard;

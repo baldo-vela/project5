@@ -1,6 +1,5 @@
-import { createAsyncThnk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { selectUserPlaylists, selectPlaylistByID } from './userPlaylistsSlice';
-import { selectAuth } from './userSlice';
 
 //Note: the extra lifecycle booleans are for expansion
 const initialState = {
@@ -10,8 +9,27 @@ const initialState = {
     error: null,
 }
 
-//May need an async thunk to fetch additiona information about a playlist and it's tracks here
+// See https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features
+// Pass this your current auth token and the id of the track
+export const fetchTrackFeatures = createAsyncThunk(
+    "currentTrackFeatures/fetchStatus",
+    async ({authToken, id}, thunkAPI) => {
+        console.trace('Fetching Track Features Bearing:', {authToken, id});
+        const data = await fetch("https://api.spotify.com/v1/audio-features/" + id,
+            {
+                body: null,
+                headers: {
+                    'Authorization': "Bearer" + authToken,
+                    'Content-Type': 'application/json'
 
+                }
+            });
+        const json = await data.json();
+        //TODO: Remove this in Prod
+        console.log("Spotify Returned:", json);
+        return json;
+    }
+)
 //Slice Object
 
 const sliceOptions = {
@@ -43,11 +61,11 @@ const sliceOptions = {
 }
 
 //Selectors
-// const selectCurrentPlaylist = (state) => {
-//     const currentUserPlaylists = selectUserPlaylists(state);
-//     const currentPlaylist = selectCurrentPlaylist(state);
-//     return 
-// }
+export const selectCurrentPlaylist = (state) => {
+    const currentUserPlaylists = selectUserPlaylists(state);
+    const currentPlaylist = selectCurrentPlaylist(state);
+    return 
+}
 
 //Exports
 export const currentPlaylistSlice = createSlice(sliceOptions);

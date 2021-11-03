@@ -1,7 +1,7 @@
 //React Dependancies
 import React from 'react'
 //import { connect, useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 
 //Style Imports
 import './stylesheets/App.css';
@@ -9,7 +9,7 @@ import './stylesheets/index.css';
 
 //Root Imports
 import Login from './actions/Login.js';
-import history from './history';
+
 
 
 //Container Imports
@@ -18,10 +18,7 @@ import PlaylistDetails from './containers/PlaylistDetails';
 
 
 function App(){
-    //let history = useHistory();
-    //const dispatch = useDispatch();
-    //const isLoggedIn = useSelector(isLoggedIn);
-    //const user = props.user;
+    const history = useHistory();
     // TODO : Pass the detail view the props it needs to render the selected playlist
     return (
         <div className="App">
