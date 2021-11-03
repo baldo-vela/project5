@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { 
+    createAsyncThunk,
+    createSelector,
+    createSlice,
+ } from "@reduxjs/toolkit";
 // TODO rewrite this to reference our Rails API backend
 import { spotifyUserURL } from '../../configurations/Spotify';
 
@@ -51,6 +55,7 @@ import { spotifyUserURL } from '../../configurations/Spotify';
         // 'arg' containing the first parameter that was passed to the thunk action creator when it was dispatched. This is useful for passing in values like item IDs that may be needed as part of the request. If you need to pass in multiple values, pass them together in an object when you dispatch the thunk, like dispatch(fetchUsers({status: 'active', sortBy: 'name'})).
         // 'thunkAPI:' an object containing all of the parameters that are normally passed to a Redux thunk function, as well as additional options:
 
+//Addtional Note: Yes RTK Query library can eliminate the need for writing data fetching thunks, but that's obfuscating things even more.
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (authToken, thunkAPI) => {
@@ -68,8 +73,38 @@ export const fetchUser = createAsyncThunk(
       return json;
   }
 );
-//Addtional Note: Yes RTK Query library can eliminate the need for writing data fetching thunks, but that's obfuscating things even more.
+//Provides the current Auth Token to the Application from the store
+const selectAuthToken = (state) => state.userSliceReducer.authToken;
+//Provides the application with time left before the auth token expires and needs to be refreshed
+const selectAuthTokenExpires = (state) => state.userSliceReducer.expiresIn;
+export const selectAuth = createSelector(
+  [selectAuthToken, selectAuthTokenExpires],
+  (authToken, expiresIn) => {
+    return {
+      authToken,
+      expiresIn,
+    };
+  }
+);
 
+//Provides the application with the current user from the store
+const selectUserObject = (state) => state.userSliceReducer.user;
+const selectUserError = (state) => state.userSliceReducer.error;
+const selectUserErrorStatus = (state) => state.userSliceReducer.hasError;
+const selectUserLoginStatus = (state) => state.userSliceReducer.isLoggedIn;
+export const selectUser = createSelector(
+  [selectUserObject, selectUserError, selectUserErrorStatus, selectUserLoginStatus],
+  (user, error, hasError, isLoggedIn) => {
+    return {
+      user,
+      error,
+      hasError,
+      isLoggedIn,
+    };
+  }
+);
+
+//Slice Building
 const sliceOptions = {
     name: "currentUser",
     initialState: {
@@ -115,4 +150,3 @@ export const userSlice = createSlice(sliceOptions);
 
 export const { setAuthToken, setCurrentUser } = userSlice.actions;
 export default userSlice.reducer;
-export const selectUserLoginStatus = (state) => state.isLoggedIn;
