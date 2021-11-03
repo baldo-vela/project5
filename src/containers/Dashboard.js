@@ -8,7 +8,7 @@ import React from 'react'
 
 import '../stylesheets/Dashboard.css'
 import {  
-    dispatch, 
+    // dispatch, 
     useSelector 
 } from 'react-redux';
 
@@ -19,7 +19,7 @@ function Dashboard() {
     const playlists = useSelector((state) => state.userPlaylistsReducer.playlists.items);
     const history = useHistory();
 
-//TODO: use dispatch to update the Redux store with the user's playlists dynamically as they scroll though using infinite loader extension
+//TODO: use dispatch to request updates to the Redux store with the user's playlists dynamically as they scroll though using infinite loader extension
 //TODO: implement infinite scroll extension D:
 
     console.log('Current Playlists from Store')
