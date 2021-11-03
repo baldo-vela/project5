@@ -19,7 +19,7 @@ class PlaylistPreview extends Component {
         const { id, name, description, owner, spotifyLink } = this.props.playlist;
         return(
             <div className='playlist-preview' key={`playlist-${id}`}>
-                <h1><href onClick={this.viewDetails}className='playlist-preview-name'>{name}</href></h1>
+                <h1 onClick={this.viewDetails}className='playlist-preview-name'>{name}</h1>
                 <p>{description ? description : '' }</p>
                 <p>{spotifyLink}</p>
                 <p>id: {id}</p>
