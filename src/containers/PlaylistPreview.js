@@ -8,7 +8,8 @@ class PlaylistPreview extends Component {
     handleViewDetails = (e) =>{
         const selectedPlaylistId = this.props.playlist.id
         console.log('view details for this playlist:', selectedPlaylistId);
-        history.push(`/playlist/${selectedPlaylistId}`);
+        history.push(`/`);
+        console.log('Logging `This`',this)
         this.setState({
             currentPlaylist: e.target.id
         });
