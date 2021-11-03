@@ -85,9 +85,16 @@ const sliceOptions = {
 };
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
-export default userPlaylistsSlice.reducer
+export default userPlaylistsSlice.reducer;
+
 //Provides the application with the current array of playlists for the current user
 export const selectUserPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.items);
 export const selectUserPlaylistsLoadingStatus = createSelector((state) => state.userPlaylistsReducer.isLoading);
 export const selectUserPlaylistsErrorStatus = createSelector((state) => state.userPlaylistsReducer.hasError);
 export const selectUserPlaylistsError = createSelector((state) => state.userPlaylistsReducer.error);
+//For Querying the next page of playlists
+export const selectNextPlaylistsPage = createSelector((state) => state.userPlaylistsReducer.playlists.next);
+export const selectPreviousPlaylistsPage = createSelector((state) => state.userPlaylistsReducer.playlists.previous);
+export const selectTotalPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.total);
+export const selectLimitPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.limit);
+export const selectOffsetPlaylists = createSelector((state) => state.userPlaylistsReducer.playlists.offset);
