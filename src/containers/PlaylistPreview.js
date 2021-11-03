@@ -4,13 +4,7 @@ import { selectPlaylistByID } from '../redux/slices/userPlaylistsSlice';
 import history from '../history';
 
 class PlaylistPreview extends Component {
-    constructor(){
-        super();
-        this.state = {
-            isLoading: false,
-            currentPlaylist: [],
-        }
-    }
+
     handleViewDetails = (e) =>{
         const selectedPlaylistId = this.props.playlist.id
         console.log('view details for this playlist:', selectedPlaylistId);
