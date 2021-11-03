@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Player from '../components/Player';
 
 import { useLocation } from 'react-router-dom';
 
 function PlaylistDetails() {
     const location = useLocation();
-
+    console.log(location);
     // Selects the playlist from the redux store using the id from the url
 
     
