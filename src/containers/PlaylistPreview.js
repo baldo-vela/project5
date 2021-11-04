@@ -7,7 +7,7 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-// import Avatar from "@mui/material/Avatar";
+import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // import { red } from "@mui/material/colors";
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme =>
             width: "100%"
         },
         card: {
-            padding: "16px"
+            padding: "26px"
         },
     }))
 
@@ -43,12 +43,24 @@ const PlaylistPreview = (props) => {
     //TODO: Fix issue with <p> tags in descrip:
         //<p>Enter another dimension of classical music with these atmospheric Sci-fi soundtracks. Twin playlist: <a href="spotify:user:spotify:playlist:37i9dQZF1DX0i61tT0OnnK">Space-themed Classical Music</a>.</p>
     // { spotifyID, name: "Starlight Brigade Vibes", description: "Does what it says on the tin", owner: spotify username }
-    const { id, name, description, owner, spotifyLink, style } = props.playlist;
+    const { id, name, description, owner, spotifyLink, style, images } = props.playlist;
     return(
         <div key={`playlist-${id}`}>
             <Box style={style} className={classes.root}>
-                <Card className={classes.card} onClick={handleViewDetails}>
+                <Card 
+                    className={classes.card} 
+                    onClick={handleViewDetails}
+                    variant="outlined"
+                    >
                     <CardHeader
+                        avatar={
+                            <Avatar 
+                                alt={name} 
+                                src={images[0].url} 
+                                sx={{ width: 100, height: 100 }}
+                                variant="square" 
+                            /> 
+                        }
                         title={
                             `${name}`
                         }
@@ -64,9 +76,9 @@ const PlaylistPreview = (props) => {
                     <CardActions disableSpacing>
                         {loading ? null : (
                             <>
-                                <IconButton aria-label="share">
+                                {/* <IconButton aria-label="share">
                                     <ShareIcon onClick={()=>history.push(`https://open.spotify.com/track/${id}`)}/>
-                                </IconButton>
+                                </IconButton> */}
                             </>
                         )}
                     </CardActions>
