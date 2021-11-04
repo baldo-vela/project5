@@ -65,7 +65,7 @@ const PlaylistPreview = (props) => {
                         {loading ? null : (
                             <>
                                 <IconButton aria-label="share">
-                                    <ShareIcon onClick={()=>history.push(spotifyLink)}/>
+                                    <ShareIcon onClick={()=>history.push(`https://open.spotify.com/track/${id}`)}/>
                                 </IconButton>
                             </>
                         )}

@@ -15,6 +15,20 @@ import {
 import PlaylistPreview from './PlaylistPreview';
 import { useHistory } from 'react-router-dom';
 
+//MUI imports
+import { makeStyles } from "@mui/styles";
+import Container from "@mui/material/Container"
+const useStyles = makeStyles({
+    container: {
+        position: "relative"
+    }
+});
+
+const PlaylistContainer = (props) => {
+    const classes = useStyles();
+    return <Container maxWidth="sm" className={classes.container} {...props} />;
+};
+
 function Dashboard() {
     const playlists = useSelector((state) => state.userPlaylistsReducer.playlists.items);
     const history = useHistory();
