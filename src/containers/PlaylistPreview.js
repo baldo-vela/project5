@@ -23,7 +23,12 @@ const useStyles = makeStyles(theme =>
             width: "100%"
         },
         card: {
-            padding: "26px"
+            padding: "6px",
+            boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+                "&:hover": {
+                    boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+            },
+            margin: "auto",
         },
     }))
 
@@ -41,6 +46,7 @@ const PlaylistPreview = (props) => {
         history.push(`/playlist/${selectedPlaylistId}`);
     }
     //TODO: Fix issue with <p> tags in descrip:
+    //Note it's probably related to a lack of sanitization on *Spotify's end*
         //<p>Enter another dimension of classical music with these atmospheric Sci-fi soundtracks. Twin playlist: <a href="spotify:user:spotify:playlist:37i9dQZF1DX0i61tT0OnnK">Space-themed Classical Music</a>.</p>
     // { spotifyID, name: "Starlight Brigade Vibes", description: "Does what it says on the tin", owner: spotify username }
     const { id, name, description, owner, spotifyLink, style, images } = props.playlist;
