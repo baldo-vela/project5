@@ -57,7 +57,7 @@ const PlaylistPreview = (props) => {
                             <Avatar 
                                 alt={name} 
                                 src={images[0].url} 
-                                sx={{ width: 100, height: 100 }}
+                                sx={{ width: 180, height: 180 }}
                                 variant="square" 
                             /> 
                         }
