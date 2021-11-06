@@ -3,6 +3,8 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 // Configuration
 import { spotifyUserURL } from "../../configurations/Spotify";
 
+// createAsyncThunk provides the API state when the promise resolves
+// It has 2 arguments, a string providing the name of the action, and a callback function that should return a promise
 export const fetchPlaylists = createAsyncThunk(
   "userPlaylists/fetchStatus",
   async (authToken, thunkAPI) => {
