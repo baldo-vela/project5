@@ -3,6 +3,7 @@ import { selectUserPlaylists, selectPlaylistByID } from './userPlaylistsSlice';
 
 //Note: the extra lifecycle booleans are for expansion
 const initialState = {
+    currentPlaylistId: null,
     currentPlaylist: [],
     isLoading: false,
     hasError: false,
@@ -30,17 +31,20 @@ export const fetchTrackFeatures = createAsyncThunk(
         return json;
     }
 )
+// Query Rails backend for Notes on a Playlist
+
+
 //Slice Object
 
 const sliceOptions = {
     name: "currentPlaylist",
     initialState: initialState,
     reducers: {
-        setPlaylist: (state, action) => {
-            state.push(action.payload);
+        setPlaylistId: (state, action) => {
+            state.currentPlaylistId = action.payload;
         },
-        clearPlaylist: (state, action) => {
-            state.filter(playlist => playlist.id !== action.payload.id)
+        clearPlaylistId: (state) => {
+            state.currentPlaylistId = "";
         },
     },
     extraReducers: {
@@ -70,3 +74,9 @@ export const selectCurrentPlaylist = (state) => {
 //Exports
 export const currentPlaylistSlice = createSlice(sliceOptions);
 export default currentPlaylistSlice.reducer;
+
+//Exports the actions to the application
+export const {
+    setPlaylistId,
+    clearPlaylistId,
+} = currentPlaylistSlice.actions;
