@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlaylistId, clearPlaylistId } from "../redux/slices/currentPlaylistSlice"
+import currentPlaylistSlice, { setPlaylistId, clearPlaylistId } from "../redux/slices/currentPlaylistSlice"
 import Player from '../components/Player';
 
 const PlaylistDetails = (props) => {
@@ -14,6 +14,11 @@ const PlaylistDetails = (props) => {
     const currentPlaylist = useSelector((state) => state.userPlaylistsReducer.playlists.items.find(p => p.id === currentPlaylistId))
     console.log("Current Playlist", currentPlaylist)
     const authToken = useSelector((state)=> state.userSliceReducer.authToken)
+    useEffect (() => {
+        //dispatch(clearPlaylistId);
+        //dispatch(setPlaylistId(currentPlaylistId));
+
+    });
     
     
     return (     
