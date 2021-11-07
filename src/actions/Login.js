@@ -54,6 +54,11 @@ const Login = (props) => {
         console.log('authHandler recieving access token ', token);
         dispatch(setAuthToken(token))
         dispatch(fetchUser(token))
+        /*
+        //TODO: First fetch this data from Rails backend
+        //If it exists, process the returned data, else run `fetchPlaylists
+        */
+       // Above TODO would violate Spotify API as single source of truth and cause cache invalidation issues
         dispatch(fetchPlaylists(token))
     }
 
