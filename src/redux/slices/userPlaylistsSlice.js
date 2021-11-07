@@ -1,7 +1,10 @@
 // RTK imports
-import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice, } from "@reduxjs/toolkit";
+//Redux
+import { useSelector } from "react-redux";
 // Configuration
 import { spotifyUserURL } from "../../configurations/Spotify";
+import { playlistsApi } from '../../globals'
 
 // createAsyncThunk provides the API state when the promise resolves
 // It has 2 arguments, a string providing the name of the action, and a callback function that should return a promise
@@ -19,6 +22,7 @@ export const fetchPlaylists = createAsyncThunk(
       });
       const json = await data.json();
       console.log(json)
+      //Insert a post to the backend to persist the user object
       return json;
   }
 )
@@ -56,7 +60,31 @@ total: 62
 [[Prototype]]: Object
 */
 
+export const postPlaylists = createAsyncThunk(
+  "userPlaylists/postStatus",
+  async (state, thunkAPI) => {
+      //Need User selector
+      //need userPlaylists Selector
+      const playlists = useSelector(selectUserPlaylists)
+      console.trace('Posting user to GH-API');
+      console.table(playlists);
+      const resp = await fetch(playlistsApi,
+        {
+          body: {
+            playlists
+          },
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const json = await resp.json();
+        console.log(json)
+        return json;
+  }
+)
+
 //Long format to list out all the slice options for this slice
+//TODO: Reformat the lifecycle states to NOT be booleans as per style guide https://redux.js.org/tutorials/fundamentals/part-7-standard-patterns
 const sliceOptions = {
   name: "userPlaylists",
   initialState: {
@@ -81,9 +109,22 @@ const sliceOptions = {
     [fetchPlaylists.rejected]: (state) => {
       state.isLoading = false;
       state.hasError = true;
+    },
+    [postPlaylists.pending]: (state) => {
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [postPlaylists.fulfilled]: (state, action) => {
+      state.playlists = action.payload;
+      state.isLoading = false;
+      state.hasError = false;
+    },
+    [postPlaylists.rejected]: (state) => {
+      state.isLoading = false;
+      state.hasError = true;
+    }
+
   }
-}
-//TODO: Reformat the lifecycle states to NOT be booleans as per style guide https://redux.js.org/tutorials/fundamentals/part-7-standard-patterns
 };
 //Creates the userPlaylists slice for currentUser from sliceOptions
 export const userPlaylistsSlice = createSlice(sliceOptions);
