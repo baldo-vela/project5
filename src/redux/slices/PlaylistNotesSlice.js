@@ -18,8 +18,8 @@ import { useSelector } from "react-redux";
 //TODO: Replace this with import from global
 const noteUrl = ""
 
-// export const getNotes = createAsyncThunk(
-//     "notes/fetchStatus",
+// export const loadNotes = createAsyncThunk(
+//     "notes/fetchByIdStatus",
 //     async (playlistId, thunkAPI) => {
 //         console.trace('Fetching Notes for: ', playlistId);
 //         const data = await fetch(noteUrl,
@@ -35,6 +35,9 @@ const noteUrl = ""
 //     }
 // )
 
+
+/*--------API Actions--------*/
+//Make a New Note
 export const makeNote = createAsyncThunk(
     "notes/postStatus",
     async (newNote, thunkAPI) => {
@@ -52,3 +55,59 @@ export const makeNote = createAsyncThunk(
         return json;
     }
 )
+//Delete a Note
+export const deleteNote = createAsyncThunk(
+    "notes/deleteStatus",
+    async (newNote, thunkAPI) => {
+        console.trace('Posting to back end, Note:', newNote);
+        const resp = await fetch(noteUrl, {
+            body: JSON.stringify(newNote),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            method: "DELETE",
+        });
+        const json = await resp.json();
+        console.log('Server Responds to Post request with: ', resp);
+        return json;
+    }
+)
+//Edit and Existing Note
+export const editNote = createAsyncThunk(
+    "notes/editStatus",
+    async (noteToEdit, thunkAPI) => {
+        console.trace('Posting to back end, Note:', noteToEdit);
+        const resp = await fetch(noteUrl, {
+            body: JSON.stringify(noteToEdit),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            method: "PATCH",
+        });
+        const json = await resp.json();
+        console.log('Server Responds to Patch request with: ', resp);
+        return json;
+    }
+)
+
+const sliceOptions = {
+    name: "notes",
+    initialState: {
+        notes: [],
+        isLoading: false,
+        hasError: false,
+        error: null,
+    },
+    reducers: {
+        getNotes: (state) => {
+            
+        },
+        makeNote: (state, action) => {
+            state.notes.push(action.payload);
+        },
+        deleteNote: (state)
+
+    }
+}
