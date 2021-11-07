@@ -3,8 +3,11 @@ import {
     createSelector,
     createSlice,
  } from "@reduxjs/toolkit";
+
+import { useSelector } from "react-redux";
 // TODO rewrite this to reference our Rails API backend
 import { spotifyUserURL } from '../../configurations/Spotify';
+import { playlistsApi } from "../../globals"
 
 
 /*  Sample User Data:
@@ -48,6 +51,23 @@ export const fetchUser = createAsyncThunk(
       return json;
   }
 );
+
+export const postUser = createAsyncThunk(
+  "user/postUser",
+  async ({/*relevant user object goes here*/}, thunkAPI) => {
+    console.trace('Posting User to Backend:', )
+    const userObjectAsString = JSON.stringify(selectUserObject);
+    const postUser = await fetch( playlistsApi, 
+      {
+        body: userObjectAsString,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "post"
+      });
+    const json = await postUser.json();
+  }
+)
 //Provides the current Auth Token to the Application from the store
 const selectAuthToken = (state) => state.userSliceReducer.authToken;
 //Provides the application with time left before the auth token expires and needs to be refreshed
