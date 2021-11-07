@@ -2,7 +2,7 @@
 const rootEndPointUrl = 'http://localhost:3001/api/v1';
 const usersApi = `${rootEndPointUrl}/users`;
 const loginUrl = `${rootEndPointUrl}/login`;
-const playlistsApi = `${rootEndPointUrl}/playlists`;
+export const playlistsApi = `${rootEndPointUrl}/playlists`;
 const tracksApi = `${rootEndPointUrl}/tracks`;
 
 //Spotify Urls
