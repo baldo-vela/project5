@@ -8,11 +8,12 @@ import React from 'react'
 
 import '../stylesheets/Dashboard.css'
 import {  
-    // dispatch, 
+    useDispatch, 
     useSelector 
 } from 'react-redux';
 
 import PlaylistPreview from './PlaylistPreview';
+import { clearPlaylistId } from "../redux/slices/currentPlaylistSlice"
 import { useHistory } from 'react-router-dom';
 
 //MUI imports
@@ -32,6 +33,9 @@ const PlaylistContainer = (props) => {
 function Dashboard() {
     const playlists = useSelector((state) => state.userPlaylistsReducer.playlists.items);
     const history = useHistory();
+    const dispatch = useDispatch();
+    //Clears the detail view playlist Id register just in case
+    dispatch(clearPlaylistId);
 
 //TODO: use dispatch to request updates to the Redux store with the user's playlists dynamically as they scroll though using infinite loader extension
 //TODO: implement infinite scroll extension D:
