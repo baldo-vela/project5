@@ -1,6 +1,6 @@
 //This component contains the form and action handlers to create a new note
 //React Imports
-import { createSelector } from "@reduxjs/toolkit";
+// import { createSelector } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { makeNote } from "../redux/slices/PlaylistNotesSlice";
@@ -8,9 +8,9 @@ import { makeNote } from "../redux/slices/PlaylistNotesSlice";
 import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormLabel from '@mui/material/FormLabel'
+// import FormControl from '@mui/material/FormControl'
+// import FormControlLabel from '@mui/material/FormControlLabel'
+// import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
