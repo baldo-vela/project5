@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import currentPlaylistSlice, { setPlaylistId, clearPlaylistId } from "../redux/slices/currentPlaylistSlice"
 import Player from '../components/Player';
+//TODO: Import the container of all the notes for this playlist
+import CurrentNotes from '../components/CurrentNotes';
 
 const PlaylistDetails = (props) => {
     // const location = useLocation();
@@ -34,8 +36,12 @@ const PlaylistDetails = (props) => {
                     <Player authToken={authToken} playlistUri={currentPlaylist.uri}/>
                 </div>
                 <div className='track-list'>
+                    {/* TODO: list of Tracks goes here */}
 
-
+                </div>
+                <div className='playlist-notes-container'>
+                    {/* TODO: Outfit this with the components necessary to render, make, edit, and delete notes */}
+                    <CurrentNotes playlistId={currentPlaylist.id}/>
                 </div>
             </div>
         </div>
