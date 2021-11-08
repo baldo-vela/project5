@@ -23,7 +23,7 @@ const noteUrl = notesAPI;
 export const loadNotes = createAsyncThunk(
     "currentNotes/fetchByIdStatus",
     async (playlistId, thunkAPI) => {
-        console.trace('Fetching Notes for: ', playlistId);
+        console.log('Fetching Notes for: ', playlistId);
         const data = await fetch(noteUrl,
             {
                 headers: {
@@ -46,7 +46,7 @@ export const loadNotes = createAsyncThunk(
 export const makeNote = createAsyncThunk(
     "currentNotes/postStatus",
     async (newNote, thunkAPI) => {
-        console.trace('Posting to back end, Note:', newNote);
+        console.log('Posting to back end, Note:', newNote);
         const resp = await fetch(noteUrl, {
             body: JSON.stringify(newNote),
             headers: {
@@ -64,7 +64,7 @@ export const makeNote = createAsyncThunk(
 export const deleteNote = createAsyncThunk(
     "currentNotes/deleteStatus",
     async (newNote, thunkAPI) => {
-        console.trace('Posting to back end, Note:', newNote);
+        console.log('Posting to back end, Note:', newNote);
         const resp = await fetch(noteUrl, {
             body: JSON.stringify(newNote),
             headers: {
