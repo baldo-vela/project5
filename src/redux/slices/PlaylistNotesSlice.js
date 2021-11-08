@@ -15,8 +15,10 @@ import { createAsyncThunk, createSelector, createSlice, } from "@reduxjs/toolkit
 
 import { useSelector } from "react-redux";
 
+import { notesAPI } from "../../globals";
+
 //TODO: Replace this with import from global
-const noteUrl = ""
+const noteUrl = notesAPI;
 
 export const loadNotes = createAsyncThunk(
     "currentNotes/fetchByIdStatus",
@@ -102,6 +104,18 @@ const sliceOptions = {
         isLoading: false,
         hasError: false,
         error: null,
+        // postNote: {
+        //     newNote: '',
+        //     isLoading: false,
+        //     hasError: false,
+        //     error: null,
+        // },
+        // deleteNote: {
+        //     trashnote: '',
+        //     isLoading: false,
+        //     hasError: false,
+        //     error: null,
+        // },
     },
     reducers: {
         makeNote: (state, action) => {
@@ -127,7 +141,20 @@ const sliceOptions = {
         [loadNotes.rejected]: (state, action) => {
             state.isLoading = false;
             state.hasError = true;
-        }
+        },
+        [makeNote.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [makeNote.fulfilled]: (state, action) => {
+            state.notes = action.payload;
+            state.isLoading = false;
+            state.hasError = false;
+        },
+        [makeNote.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },
     }
 }
 
