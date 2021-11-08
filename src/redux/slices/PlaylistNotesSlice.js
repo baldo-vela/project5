@@ -15,27 +15,32 @@ import { createAsyncThunk, createSelector, createSlice, } from "@reduxjs/toolkit
 
 import { useSelector } from "react-redux";
 
-import { notesAPI } from "../../globals";
+import { 
+    notesAPI, 
+    // playlistsApi 
+} from "../../globals";
 
-//TODO: Replace this with import from global
-const noteUrl = notesAPI;
-
+const playlistsApi = 'http://localhost:3001/api/v1/playlists';
+//Okay In order to prevent massive blobs being sent to the back end. We only create a playlist object on the backend when a valid note object is sent
 export const loadNotes = createAsyncThunk(
     "currentNotes/fetchByIdStatus",
     async (playlistId, thunkAPI) => {
         console.log('Fetching Notes for: ', playlistId);
-        const data = await fetch(noteUrl,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: {
-                    'playlistId': playlistId,
-                }
-            }
+        const getRequest = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            // body: JSON.stringify({
+            //     'playlistId': playlistId,
+            // }),
+            method: "GET",
+        }
+        console.log("Get request:", getRequest)
+        const data = await fetch(playlistsApi+`/${playlistId}`, getRequest
         );
         const json = await data.json();
+        console.log('Fetched Json', json);
         return json;
     }
 )
@@ -47,7 +52,7 @@ export const makeNote = createAsyncThunk(
     "currentNotes/postStatus",
     async (newNote, thunkAPI) => {
         console.log('Posting to back end, Note:', newNote);
-        const resp = await fetch(noteUrl, {
+        const resp = await fetch(notesAPI, {
             body: JSON.stringify(newNote),
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +70,7 @@ export const deleteNote = createAsyncThunk(
     "currentNotes/deleteStatus",
     async (newNote, thunkAPI) => {
         console.log('Posting to back end, Note:', newNote);
-        const resp = await fetch(noteUrl, {
+        const resp = await fetch(notesAPI, {
             body: JSON.stringify(newNote),
             headers: {
                 "Content-Type": "application/json",
@@ -119,9 +124,11 @@ const sliceOptions = {
     },
     reducers: {
         makeNote: (state, action) => {
+            console.log('makeNote action request:', action.payload);
             state.notes.push(action.payload);
         },
         deleteNote: (state, action) => {
+            console.log('deleteNote action request:', action.payload);
             state.notes.filter((note) => note.id !== action.payload.id);
         },
         // editNote: (state, action) => {
