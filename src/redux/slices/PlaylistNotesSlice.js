@@ -130,3 +130,6 @@ const sliceOptions = {
         }
     }
 }
+
+export const currentNotesSlice = createSlice(sliceOptions);
+export default currentNotesSlice.reducer;
