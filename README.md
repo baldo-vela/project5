@@ -4,7 +4,13 @@ This project was created with as a demonstration of a full-stack web-application
 
 The goal being a comprehensive display of proficiency with the React library to build a user-facing application. In addition to tying together previous knowledge of constructing a functional Rails powered backend.
 
-Greatest Hits 2.0 code base is seperated into two repositories, this one which is the client facing User Interface (UI). The Ruby on Rails server repository is currently depreciated as this application currently derives all of it's functionality from the Spotify API directly. It's purpose is to provide a social expansion of existing Spotify playlists. By using React-Router, we hope to enable better SEO exposure and a modicum of 
+Greatest Hits 2.0 code base is seperated into two repositories, this one which is the client facing User Interface (UI). The Ruby on Rails server repository is currently depreciated as this application currently derives all of it's functionality from the Spotify API directly. It's purpose is to provide a social expansion of existing Spotify playlists. By using React-Router, we hope to enable better SEO exposure.
+
+Be sure to check out the repo of the backend for this project!
+https://github.com/baldo-vela/greatest-hits-backend
+
+If your interested in Ruby on Rails you may also want to check out my blog post here https://baldo-vela.medium.com/rerun-speeding-up-ruby-on-rails-development-by-putting-things-on-loop-8dcd1f708e3b about saving time during development by automatically rebooting your rails servers when you make changes to it's files.
+
 ## 🛠️ Installation 🛠️
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/baldo-vela/project5">
 
