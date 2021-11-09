@@ -4,6 +4,7 @@ import currentPlaylistSlice, { setPlaylistId, clearPlaylistId } from "../redux/s
 import Player from '../components/Player';
 //TODO: Import the container of all the notes for this playlist
 import CurrentNotes from '../components/CurrentNotes';
+import { loadNotes } from '../redux/slices/PlaylistNotesSlice';
 
 const PlaylistDetails = (props) => {
     // const location = useLocation();
@@ -16,11 +17,19 @@ const PlaylistDetails = (props) => {
     const currentPlaylist = useSelector((state) => state.userPlaylistsReducer.playlists.items.find(p => p.id === currentPlaylistId))
     console.log("Current Playlist", currentPlaylist)
     const authToken = useSelector((state)=> state.userSliceReducer.authToken)
-    useEffect (() => {
-        //dispatch(clearPlaylistId);
-        //dispatch(setPlaylistId(currentPlaylistId));
+    //Selects the current array of notes from the store
+    const listOfNotes = useSelector((state) => state.currentNotesSliceReducer.notes)
+    //If the array is undefined, call the store to load them given this instances playlist id
+    // if (listOfNotes.length === 0 || listOfNotes === undefined) {
+    //     console.log('listOfNotes is empty, calling dispatch for:', currentPlaylistId)
+    //     dispatch(loadNotes(currentPlaylistId));
+    //     return "loading";
+    // }
+    useEffect(() => {
+        dispatch(loadNotes(currentPlaylistId));
 
-    });
+    }, [])
+
     
     
     return (     
@@ -41,7 +50,7 @@ const PlaylistDetails = (props) => {
                 </div>
                 <div className='playlist-notes-container'>
                     {/* TODO: Outfit this with the components necessary to render, make, edit, and delete notes */}
-                    <CurrentNotes playlistId={currentPlaylist.id}/>
+                    <CurrentNotes playlistId={currentPlaylist.id} currentNotes={listOfNotes}/>
                 </div>
             </div>
         </div>
