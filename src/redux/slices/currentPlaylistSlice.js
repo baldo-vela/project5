@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { selectUserPlaylists, selectPlaylistByID } from './userPlaylistsSlice';
+import { playlistsApi } from '../../globals'
 
 //Note: the extra lifecycle booleans are for expansion
 const initialState = {
@@ -31,7 +32,26 @@ export const fetchTrackFeatures = createAsyncThunk(
         return json;
     }
 )
-// Query Rails backend for Notes on a Playlist
+
+//Post the ID of a playlist to the Backend for retention
+export const postPlaylist = createAsyncThunk(
+    "currentPlaylist/postStatus",
+    async (playlistId, thunkAPI) => {
+        console.trace('Posting Playlist:', playlistId);
+        const resp = await fetch(`${playlistsApi}/${playlistId}`, {
+            body: playlistId,
+            headers: {
+                'Content-Type': 'application/json',
+                "Accept": "application/json"
+            },
+            method: "POST"
+        });
+        const json = await resp.json();
+        console.log("Rails Server Responded to Request with:", json);
+        return json;
+    }
+)
+
 
 
 //Slice Object
@@ -58,6 +78,19 @@ const sliceOptions = {
         //     state.hasError = false;
         // },
         // [fetchCurrentPlaylist.rejected]: (state) => {
+        //     state.isLoading = false;
+        //     state.hasError = true;
+        // },
+        // [postPlaylist.pending]: (state) => {
+        //     state.isLoading = true;
+        //     state.hasError = false;
+        //   },
+        // [postPlaylist.fulfilled]: (state, action) => {
+        //     state.playlists = action.payload;
+        //     state.isLoading = false;
+        //     state.hasError = false;
+        // },
+        // [postPlaylist.rejected]: (state) => {
         //     state.isLoading = false;
         //     state.hasError = true;
         // },
