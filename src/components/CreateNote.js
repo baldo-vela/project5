@@ -44,15 +44,16 @@ function CreateNote({onMakeNoteHandler}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (content == '') {
+        if (content === '') {
             setContentError(true)
         }
         if(content){
             const newNote = {
                 playlistId: playlistId,
                 content: content,
-                username: userId
+                "user-spotify-id": userId
             }
+            console.log("Dispatching New Note to Store:", newNote)
             dispatch(makeNote(newNote));
         }
 
