@@ -22,11 +22,11 @@ export default function Player({ authToken, playlistUri, }) {
         sliderTrackColor: string;
         trackArtistColor: string;
         trackNameColor: string; */
-    const playerStyles = {
-        //TODO: Renable after pallet redesign
-        color: "#27163f",
-        bgColor: "#595959",
-    };
+    // const playerStyles = {
+    //     //TODO: Re-enable after pallet redesign
+    //     color: "#27163f",
+    //     bgColor: "#595959",
+    // };
     //URI prop requires an array!
     //Leave Autoplay off by default
     //We gonna dump in all the params as props, except callback for tweaking that A E S T H E T I C
