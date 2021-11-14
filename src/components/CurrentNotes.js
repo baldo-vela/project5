@@ -1,6 +1,15 @@
-import React, {useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadNotes, makeNote, deleteNote } from "../redux/slices/PlaylistNotesSlice";
+import React, {
+    // useEffect
+} from "react";
+import { 
+    useDispatch, 
+    // useSelector 
+} from "react-redux";
+import { 
+    // loadNotes, 
+    makeNote, 
+    deleteNote 
+} from "../redux/slices/PlaylistNotesSlice";
 import CreateNote from './CreateNote';
 import Note from "./Note";
 
