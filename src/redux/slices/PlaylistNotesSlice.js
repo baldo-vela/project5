@@ -48,6 +48,7 @@ export const loadNotes = createAsyncThunk(
 
 /*--------API Actions--------*/
 //Make a New Note
+// newNote = {}
 export const makeNote = createAsyncThunk(
     "currentNotes/postStatus",
     async (newNote, thunkAPI) => {
@@ -68,10 +69,10 @@ export const makeNote = createAsyncThunk(
 //Delete a Note
 export const deleteNote = createAsyncThunk(
     "currentNotes/deleteStatus",
-    async (newNote, thunkAPI) => {
-        console.log('Posting to back end, Note:', newNote);
+    async (trashNote, thunkAPI) => {
+        console.log('Posting to back end, Note:', trashNote);
         const resp = await fetch(notesAPI, {
-            body: JSON.stringify(newNote),
+            body: JSON.stringify(trashNote),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -136,7 +137,7 @@ const sliceOptions = {
         // },
     },
     extraReducers: {
-        [loadNotes.pending]: (state, action) => {
+        [loadNotes.pending]: (state) => {
             state.isLoading = true;
             state.hasError = false;
         },
@@ -145,11 +146,11 @@ const sliceOptions = {
             state.isLoading = false;
             state.hasError = false;
         },
-        [loadNotes.rejected]: (state, action) => {
+        [loadNotes.rejected]: (state) => {
             state.isLoading = false;
             state.hasError = true;
         },
-        [makeNote.pending]: (state, action) => {
+        [makeNote.pending]: (state) => {
             state.isLoading = true;
             state.hasError = false;
         },
