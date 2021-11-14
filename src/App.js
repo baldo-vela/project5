@@ -25,7 +25,7 @@ function App(){
             <Router>
                 <Switch>    
                     <Route exact path='/' exact component={Login} /> 
-                    {/* TODO: Set this route below to be private? */}
+                    {/* TODO: Set these routes below to be private? */}
                     <Route exact path='/main' render={((props)=> (
                         <Dashboard {...props} history={history} />
                     ))} />
