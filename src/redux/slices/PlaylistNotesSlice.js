@@ -109,19 +109,7 @@ const sliceOptions = {
         notes: [],
         isLoading: false,
         hasError: false,
-        error: null,
-        // postNote: {
-        //     newNote: '',
-        //     isLoading: false,
-        //     hasError: false,
-        //     error: null,
-        // },
-        // deleteNote: {
-        //     trashnote: '',
-        //     isLoading: false,
-        //     hasError: false,
-        //     error: null,
-        // },
+        error: null,  
     },
     reducers: {
         // makeNote: (state, action) => {
@@ -143,7 +131,7 @@ const sliceOptions = {
             state.hasError = false;
         },
         [loadNotes.fulfilled]: (state, action) => {
-            state.notes = action.payload;
+            state.notes = action.payload.data.notes;
             state.isLoading = false;
             state.hasError = false;
         },
@@ -156,7 +144,9 @@ const sliceOptions = {
             state.hasError = false;
         },
         [makeNote.fulfilled]: (state, action) => {
-            state.notes.push(action.payload);
+            console.log("Current Notes obj:", state.notes);
+            // Note we have to drill through the json to get the note object back
+            state.notes.push(action.payload.store);
             state.isLoading = false;
             state.hasError = false;
         },
