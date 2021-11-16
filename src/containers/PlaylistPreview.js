@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, } from 'react';
+import { useDispatch, } from 'react-redux';
+import { postPlaylist } from '../redux/slices/currentPlaylistSlice';
 import { useHistory } from 'react-router-dom';
 //Material UI Imports
 import { createStyles, makeStyles } from '@mui/styles';
@@ -8,11 +10,11 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // import { red } from "@mui/material/colors";
 // import FavoriteIcon from "@mui/materials/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+// import ShareIcon from "@mui/icons-material/Share";
 // import MoreVertIcon from "@mui/materials/MoreVert";
 // import Skeleton from "@mui/materialSkeleton";
 
@@ -38,10 +40,13 @@ const PlaylistPreview = (props) => {
     const loading = false;
     //MUI styling hook
     const classes = useStyles();
+    //Store Action Alias
+    const dispatch = useDispatch();
 
     //Handles when a User clicks on a preview object to trigger the detail view
     const handleViewDetails = (e) =>{
         const selectedPlaylistId = props.playlist.id;
+        dispatch(postPlaylist(selectedPlaylistId));
         console.log('view details for this playlist:', selectedPlaylistId);
         history.push(`/playlist/${selectedPlaylistId}`);
     }
