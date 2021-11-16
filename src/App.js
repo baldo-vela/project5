@@ -9,6 +9,7 @@ import './stylesheets/index.css';
 
 //Root Imports
 import Login from './actions/Login.js';
+import Counter from './components/Counter';
 
 
 
@@ -32,6 +33,7 @@ function App(){
                     <Route exact path='/playlist/:id' render={((props)=> (
                         <PlaylistDetails {...props} history={history} />
                     ))} />
+                    <Route exact path='/Counter' exact component={Counter}/>
                 </Switch>    
                 
             </Router>
