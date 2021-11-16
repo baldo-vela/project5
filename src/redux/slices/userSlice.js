@@ -4,7 +4,7 @@ import {
     createSlice,
  } from "@reduxjs/toolkit";
 
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // TODO rewrite this to reference our Rails API backend
 import { spotifyUserURL } from '../../configurations/Spotify';
 import { playlistsApi } from "../../globals"
@@ -53,9 +53,9 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const postUser = createAsyncThunk(
-  "user/postUser",
-  async ({/*relevant user object goes here*/}, thunkAPI) => {
-    console.trace('Posting User to Backend:', )
+  "user/postUserStatus",
+  async (thunkAPI) => {
+    console.trace('Posting User to Backend:', selectUserObject)
     const userObjectAsString = JSON.stringify(selectUserObject);
     const postUser = await fetch( playlistsApi, 
       {
