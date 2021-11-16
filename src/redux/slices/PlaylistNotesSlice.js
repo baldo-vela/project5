@@ -124,10 +124,10 @@ const sliceOptions = {
         // },
     },
     reducers: {
-        makeNote: (state, action) => {
-            console.log('makeNote action request:', action.payload);
-            state.notes.push(action.payload);
-        },
+        // makeNote: (state, action) => {
+        //     console.log('makeNote action request:', action.payload);
+        //     state.notes.push(action.payload);
+        // },
         deleteNote: (state, action) => {
             console.log('deleteNote action request:', action.payload);
             state.notes.filter((note) => note.id !== action.payload.id);
@@ -137,6 +137,7 @@ const sliceOptions = {
         // },
     },
     extraReducers: {
+        //Note: all of these reducer cases can be handle with builder functions
         [loadNotes.pending]: (state) => {
             state.isLoading = true;
             state.hasError = false;
@@ -155,7 +156,7 @@ const sliceOptions = {
             state.hasError = false;
         },
         [makeNote.fulfilled]: (state, action) => {
-            state.notes = action.payload;
+            state.notes.push(action.payload);
             state.isLoading = false;
             state.hasError = false;
         },
