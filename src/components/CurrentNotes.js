@@ -3,7 +3,7 @@ import React, {
 } from "react";
 import { 
     useDispatch, 
-    // useSelector 
+    useSelector 
 } from "react-redux";
 import { 
     // loadNotes, 
@@ -20,25 +20,19 @@ function CurrentNotes(props) {
     //     currentNotes = dispatch(loadNotes(playlistId))
     //     console.log("Current Notes from store:", currentNotes)
     // })
-    const currentNotes = [{ 
-        username: 'moleculetycoon', 
-        content: "Testing1", 
-        playlistId: playlistId,
-        date: null,
-    },]
+    const currentNotes = useSelector(state => state.currentNotesSliceReducer.notes);
     // useDispatch(loadNotes(playlistId));
 
     const onMakeNoteHandler = (note) => {
         dispatch(makeNote(note));
     };
-    
 
-    return currentNotes.map((note) => (
+    return (
         <div className={`playlist-${playlistId}-notes`}>
-            <h1> A series of notes goes here.</h1>
-            <Note note={note} handleDelete={()=> dispatch(deleteNote(note))}/>
+            <h3>Notes:</h3>
+            {currentNotes?.length && currentNotes.map(note => <Note key={note.id} note={note} onDeleteNote={() => dispatch(deleteNote(note.id))} />)}
             <CreateNote onMakeNoteHandler={onMakeNoteHandler}/>
         </div>
-    ));
+    );
 }
 export default CurrentNotes;
