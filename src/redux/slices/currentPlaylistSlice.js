@@ -38,14 +38,16 @@ export const postPlaylist = createAsyncThunk(
     "currentPlaylist/postStatus",
     async (playlistId, thunkAPI) => {
         console.trace('Posting Playlist:', playlistId);
-        const resp = await fetch(`${playlistsApi}/${playlistId}`, {
-            body: playlistId,
+        const request = {
+            body: JSON.stringify({spotify_id: playlistId}),
             headers: {
                 'Content-Type': 'application/json',
                 "Accept": "application/json"
             },
             method: "POST"
-        });
+        }
+        console.log("Post Request:", request);
+        const resp = await fetch(`${playlistsApi}`, request );
         const json = await resp.json();
         console.log("Rails Server Responded to Request with:", json);
         return json;
